@@ -169,14 +169,14 @@ const WhySuper6 = ({ theme = "dark" }) => {
               isDark ? "from-emerald-400 to-blue-400" : "from-blue-600 to-emerald-600"
             }`}
           >
-            Why <span className="text-blue-500">Super6</span> is the Best Fantasy App
+            Why <span className="text-blue-500">Gaminzo</span> is the Best Fantasy App
           </h2>
           <p
             className={`mt-4 text-lg ${
               isDark ? "text-gray-300" : "text-gray-700"
             } max-w-2xl mx-auto`}
           >
-            The Super6 fantasy app stands out because of its innovative cricket prediction game,
+            The Gaminzo fantasy app stands out because of its innovative cricket prediction game,
             engaging features, and rewarding system.
           </p>
         </motion.div>

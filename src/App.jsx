@@ -7,6 +7,7 @@ import Steps from "./Component/Steps";
 import WhatYouFindSection from "./Component/WhatYouFindSection";
 import Feature from "./Component/Feature";
 import Footer from "./Component/Footer";
+import SnapshotWinzo from "./Component/SnapshotWinzo";
 
 function App() {
   const [theme, setTheme] = useState(null);
@@ -50,9 +51,10 @@ function App() {
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />
+      <SnapshotWinzo theme ={theme}/>
       <Steps theme={theme} />
-      <WhatYouFindSection theme={theme} />
       <Feature theme={theme}/>
+      <WhatYouFindSection theme={theme} />
       <Footer theme={theme}/>
     </div>
   );

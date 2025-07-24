@@ -8,7 +8,8 @@ import WhatYouFindSection from "./Component/WhatYouFindSection";
 import Feature from "./Component/Feature";
 import Footer from "./Component/Footer";
 import SnapshotWinzo from "./Component/SnapshotWinzo";
-
+import Banner from "./Component/Banner";
+import 'animate.css';
 function App() {
   const [theme, setTheme] = useState(null);
 
@@ -48,7 +49,9 @@ function App() {
       </div> */}
 
       {/* Page Sections */}
+
       <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <Banner theme = {theme}/>
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />
       <SnapshotWinzo theme ={theme}/>

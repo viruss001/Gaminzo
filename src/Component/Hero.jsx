@@ -52,7 +52,7 @@ const Hero = ({ theme = "light" }) => {
 
   return (
     <section
-      className={`relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-20 sm:py-28 overflow-hidden ${
+      className={`relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-20 sm:py-28 overflow-hidden  ${
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}
     >
@@ -102,7 +102,7 @@ const Hero = ({ theme = "light" }) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="inline-block px-4 py-1.5 text-sm font-semibold bg-gradient-to-r from-[#1a418c] to-[#2a964a] text-white rounded-full shadow-md mb-4">
+          <span className="inline-block px-4 py-1.5 text-sm font-semibold bg-gradient-to-r from-[#1a418c] to-[#2a964a] text-white rounded-full shadow-md mb-4 ">
             🏆 Fantasy Cricket 2025
           </span>
 
@@ -119,7 +119,7 @@ const Hero = ({ theme = "light" }) => {
           </h1>
 
           <p
-            className={`mt-4 text-base sm:text-lg font-medium ${
+            className={` text-base sm:text-lg font-medium ${
               isDark ? "text-gray-300" : "text-gray-700"
             } max-w-lg`}
           >
@@ -167,7 +167,7 @@ const Hero = ({ theme = "light" }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.15 }}
               whileHover="hover"
-              className="relative w-full group p-[2px] rounded-3xl smooth-perf"
+              className="relative w-full group p-[2px] rounded-3xl smooth-perf "
               style={{
                 background: `linear-gradient(45deg, ${isDark ? "#1a418c" : "#93c5fd"}, ${
                   isDark ? "#2a964a" : "#6ee7b7"
@@ -189,7 +189,7 @@ const Hero = ({ theme = "light" }) => {
                   variants={iconFloatVariants}
                   animate="float"
                   whileHover="hover"
-                  className={`w-16 h-16 flex items-center smooth-perf justify-center rounded-full mb-5 bg-gradient-to-br ${feature.color} shadow-lg`}
+                  className={`w-16 h-16 flex items-center smooth-perf justify-center rounded-full mb-5 bg-gradient-to-br ${feature.color} shadow-lg `}
                 >
                   {React.cloneElement(feature.icon, {
                     className: "text-2xl text-white",
@@ -200,7 +200,7 @@ const Hero = ({ theme = "light" }) => {
                 </h4>
 
                 <motion.div
-                  className={`absolute inset-0 rounded-3xl border-2 ${
+                  className={`absolute inset-0 rounded-3xl border-2  ${
                     isDark ? "border-emerald-400/30" : "border-blue-400/30"
                   }`}
                   animate={{ opacity: [0.3, 0.6, 0.3] }}

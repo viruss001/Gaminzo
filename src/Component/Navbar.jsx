@@ -10,33 +10,32 @@ const Navbar = ({ theme, toggleTheme }) => {
     <div className="sticky top-0 z-50">
       {/* Container */}
       <div
-        className={`relative ${
-          isDark
+        className={`relative ${isDark
             ? "bg-gray-900"
             : "bg-white shadow-md border-b border-gray-200"
-        }`}
+          }`}
       >
         {/* Animated underline */}
         <div
-          className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${
-            isDark
+          className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${isDark
               ? "from-purple-500 via-pink-500 to-red-500"
               : "from-blue-500 via-pink-700 to-green-400"
-          } animate-pulse`}
+            } animate-pulse`}
         />
 
         {/* Navbar */}
         <header
-          className={`${
-            isDark ? "bg-gray-900/95 text-white" : "bg-white/95 text-black"
-          }`}
+          className={`${isDark ? "bg-gray-800/50 text-white" : "bg-white/95 text-black"
+            }`}
         >
           <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 lg:px-8 h-16">
             {/* Logo */}
-            <div className="text-2xl font-bold">
-              <span className={isDark ? "text-green-400" : "text-green-500"}>
-                Gaminzo
-              </span>
+            <div className="flex items-center">
+              <img
+                src="/images/logo-removebg-preview (1).png"    // <-- path to your logo
+                alt="Gaminzo Logo"
+                className="h-20 w-auto object-contain"
+              />
             </div>
 
             {/* Desktop Links */}
@@ -44,9 +43,8 @@ const Navbar = ({ theme, toggleTheme }) => {
               {navLinks.map((item, i) => (
                 <li
                   key={i}
-                  className={`cursor-pointer transition-colors ${
-                    isDark ? "hover:text-green-400" : "hover:text-green-600"
-                  }`}
+                  className={`cursor-pointer transition-colors ${isDark ? "hover:text-green-400" : "hover:text-green-600"
+                    }`}
                 >
                   {item}
                 </li>
@@ -58,9 +56,8 @@ const Navbar = ({ theme, toggleTheme }) => {
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label="Toggle menu"
-                className={`p-2 rounded-full transition ${
-                  isDark ? "hover:bg-green-700" : "hover:bg-green-100"
-                }`}
+                className={`p-2 rounded-full transition ${isDark ? "hover:bg-green-700" : "hover:bg-green-100"
+                  }`}
               >
                 <svg
                   className="w-6 h-6"
@@ -92,9 +89,8 @@ const Navbar = ({ theme, toggleTheme }) => {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className={`p-2 rounded-full ${
-                  isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
-                } transition`}
+                className={`p-2 rounded-full ${isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
+                  } transition`}
               >
                 {isDark ? (
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -109,18 +105,16 @@ const Navbar = ({ theme, toggleTheme }) => {
 
               {/* Download Button */}
               <div
-                className={`relative p-0.5 rounded-md bg-gradient-to-r ${
-                  isDark
+                className={`relative p-0.5 rounded-md bg-gradient-to-r ${isDark
                     ? "from-purple-500 via-pink-500 to-red-500"
                     : "from-red-500 via-amber-400 to-pink-500"
-                }`}
+                  }`}
               >
                 <button
-                  className={`px-5 py-1.5 rounded-[4px] font-medium text-white text-sm ${
-                    isDark
+                  className={`px-5 py-1.5 rounded-[4px] font-medium text-white text-sm ${isDark
                       ? "bg-gray-900 hover:bg-gray-800"
                       : "bg-red-600 hover:bg-red-700"
-                  } transition`}
+                    } transition`}
                 >
                   DOWNLOAD
                 </button>
@@ -135,9 +129,8 @@ const Navbar = ({ theme, toggleTheme }) => {
                 {navLinks.map((item, i) => (
                   <li
                     key={i}
-                    className={`cursor-pointer transition-colors ${
-                      isDark ? "hover:text-red-400" : "hover:text-red-600"
-                    }`}
+                    className={`cursor-pointer transition-colors ${isDark ? "hover:text-red-400" : "hover:text-red-600"
+                      }`}
                   >
                     {item}
                   </li>
@@ -146,18 +139,16 @@ const Navbar = ({ theme, toggleTheme }) => {
                   {/* Theme Toggle Inside Mobile */}
                   <button
                     onClick={toggleTheme}
-                    className={`p-2 rounded-full ${
-                      isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
-                    } transition`}
+                    className={`p-2 rounded-full ${isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
+                      } transition`}
                   >
                     {isDark ? "🌙 Dark" : "☀️ Light"}
                   </button>
                 </li>
                 <li>
                   <button
-                    className={`w-full mt-2 px-5 py-2 rounded-md text-white font-semibold ${
-                      isDark ? "bg-red-600" : "bg-red-500"
-                    }`}
+                    className={`w-full mt-2 px-5 py-2 rounded-md text-white font-semibold ${isDark ? "bg-red-600" : "bg-red-500"
+                      }`}
                   >
                     DOWNLOAD
                   </button>

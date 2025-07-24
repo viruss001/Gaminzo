@@ -7,6 +7,7 @@ import {
   FaPlug,
   FaGift,
 } from "react-icons/fa";
+import { useInView } from "react-intersection-observer";
 
 const steps = [
   {
@@ -46,112 +47,116 @@ const steps = [
   },
 ];
 
+// Animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "backOut" } },
+  hover: { y: -10, transition: { duration: 1 } },
+};
+
 const iconFloatVariants = {
   float: {
     y: [0, -15, 0],
     rotate: [0, 5, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut",
-    },
+    transition: { duration: 4 + Math.random() * 3, repeat: Infinity, ease: "easeInOut" },
   },
-  hover: {
-    scale: 1.2,
-    rotate: 10,
-    transition: { duration: 0.3 },
-  },
+  hover: { scale: 1.2, rotate: 10, transition: { duration: 0.3 } },
 };
 
 const OnboardingSteps = ({ theme = "light" }) => {
   const isDark = theme === "dark";
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <section
-      className={`relative w-full py-20 px-4 overflow-hidden ${
+      ref={ref}
+      className={`relative w-full min-h-screen py-20 px-4 overflow-hidden ${
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}
     >
-      {/* Background Blur Particles */}
+      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
-        {[...Array(15)].map((_, i) => {
-          const size = Math.random() * 6 + 2;
-          const posX = Math.random() * 100;
-          const posY = Math.random() * 100;
-          const delay = Math.random() * 2;
-          const duration = 5 + Math.random() * 10;
-
-          return (
-            <motion.div
-              key={i}
-              className={`absolute rounded-full ${
-                isDark ? "bg-emerald-400/30" : "bg-blue-500/30"
-              }`}
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left: `${posX}%`,
-                top: `${posY}%`,
-              }}
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 0.8, 0],
-                x: [0, Math.random() * 100 - 50],
-                y: [0, Math.random() * 100 - 50],
-              }}
-              transition={{
-                delay,
-                duration,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-              }}
-            />
-          );
-        })}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-emerald-400/20 to-blue-500/20 blur-3xl"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={
+            inView
+              ? { opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }
+              : {}
+          }
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/20 to-emerald-400/20 blur-3xl"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={
+            inView
+              ? { opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }
+              : {}
+          }
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto text-center relative z-10">
-        <h2
-          className={`text-4xl sm:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${
-            isDark ? "from-emerald-400 to-blue-400" : "from-blue-600 to-emerald-600"
-          }`}
+      <div className="max-w-7xl mx-auto relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
         >
-          We Think About You
-        </h2>
-        <p
-          className={`mt-4 text-lg ${
-            isDark ? "text-gray-300" : "text-gray-700"
-          } max-w-xl mx-auto`}
-        >
-          Every step of the way!
-        </p>
+          <h2
+            className={`text-4xl sm:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r ${
+              isDark
+                ? "from-emerald-400 to-blue-400"
+                : "from-blue-600 to-emerald-600"
+            }`}
+          >
+            We Think About You
+          </h2>
+          <motion.p
+            className={`mt-4 text-lg ${
+              isDark ? "text-gray-300" : "text-gray-700"
+            } max-w-xl mx-auto`}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            Every step of the way!
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-16 place-items-center">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
           {steps.map((step, idx) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={cardVariants}
               whileHover="hover"
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.15, duration: 0.8 }}
-              className="relative w-80 h-80 rounded-3xl p-[2px] group smooth-perf"
-              style={{
-                background: `linear-gradient(45deg, ${
-                  isDark ? "#1a418c" : "#93c5fd"
-                }, ${isDark ? "#2a964a" : "#6ee7b7"})`,
-              }}
+              className="relative w-80 h-80 group"
+              style={{ clipPath: "polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%)" }}
             >
-              {/* Hover glow */}
-              <div className="absolute inset-0 rounded-3xl smooth-perf bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300" />
+              {/* Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-70 blur-md transition-opacity duration-300 rounded-3xl" />
 
-              {/* Card */}
+              {/* Card Content */}
               <div
-                className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-8 py-10 ${
+                className={`relative z-10 h-full flex flex-col items-center justify-center text-center px-8 py-10 ${
                   isDark
-                    ? "bg-gray-800/80 backdrop-blur-md text-white"
-                    : "bg-white/90 backdrop-blur-sm text-gray-800"
+                    ? "bg-gray-800/80 backdrop-blur-md border border-white/10 text-white"
+                    : "bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-800"
                 }`}
               >
                 {/* Floating Icon */}
@@ -159,45 +164,21 @@ const OnboardingSteps = ({ theme = "light" }) => {
                   variants={iconFloatVariants}
                   animate="float"
                   whileHover="hover"
-                  className={`flex items-center justify-center w-20 h-20 mb-6 smooth-perf rounded-full bg-gradient-to-br ${step.color} shadow-lg`}
+                  className={`flex items-center justify-center w-20 h-20 mb-6 rounded-full bg-gradient-to-br ${step.color} shadow-lg`}
                 >
-                  {React.cloneElement(step.icon, {
-                    className: "text-3xl text-white",
-                  })}
+                  {React.cloneElement(step.icon, { className: "text-3xl text-white" })}
                 </motion.div>
 
-                {/* Title */}
                 <h3 className="font-bold text-2xl tracking-wide mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
                   {step.title}
                 </h3>
-
-                {/* Description */}
-                <p
-                  className={`text-sm ${
-                    isDark ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
+                <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
                   {step.description}
                 </p>
-
-                {/* Subtle Border Pulse */}
-                <motion.div
-                  className={`absolute inset-0 rounded-3xl border-2 ${
-                    isDark ? "border-emerald-400/30" : "border-blue-400/30"
-                  }`}
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 4 + idx,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

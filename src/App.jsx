@@ -10,7 +10,7 @@ import Footer from "./Component/Footer";
 import SnapshotWinzo from "./Component/SnapshotWinzo";
 import Banner from "./Component/Banner";
 import 'animate.css';
-import Snapvideo from "./Component/snapVideo";
+import Snapvideo from "./Component/Snapvideo";
 function App() {
   const [theme, setTheme] = useState(null);
 

@@ -11,17 +11,20 @@ const Banner = () => {
     { id: 1, image: "/images/banners/banner1.png", text: "Welcome to Our Shop" },
     { id: 2, image: "/images/banners/banner02.jpg", text: "New Arrivals This Week" },
     { id: 3, image: "/images/banners/banner2.png", text: "Big Summer Sale" },
+    // { id: 4, image: "/images/WhatsApp Image 2025-07-24 at 15.14.48_b52db62e.jpg", text: "Big Summer Sale" },
+    { id: 4, image: "/images/banner3.jpg", text: "Big Summer Sale" },
   ];
 
   return (
     <div className="w-full">
       <Swiper
-        modules={[Autoplay, Pagination, Navigation]}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        modules={[Autoplay, Pagination, Navigation ]}
+        autoplay={{ delay: 4000, disableOnInteraction: false ,pauseOnMouseEnter: true}}
         pagination={{ clickable: false }}
         navigation={false}
         loop={true}
-        className="w-fill  h-full"
+       
+        className="w-[100%]  h-full"
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
@@ -30,7 +33,7 @@ const Banner = () => {
               <img
                 src={banner.image}
                 alt={banner.text}
-                className="w-full max-h-[400px] sm:max-h-[500px] object-contain"
+                className="w-[100%] max-h-[400px] sm:max-h-[500px] object-contain"
               />
 
               {/* Text Overlay */}

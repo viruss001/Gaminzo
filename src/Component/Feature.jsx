@@ -29,7 +29,7 @@ const featuresLeft = [
   },
   {
     icon: <FaBullseye />,
-    title: "Stock Market Themed Fun",
+    title: "Stock Market Game",
     desc: "Gaminzo gamifies market themes like sectors, industries, and trends — without using real money or stock prices.",
     color: "from-purple-500 to-emerald-400",
   },

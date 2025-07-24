@@ -8,8 +8,8 @@ import "swiper/css/navigation";
 
 const Banner = () => {
   const banners = [
-    { id: 1, image: "/images/banners/banner001.jpg", text: "Welcome to Our Shop" },
-    { id: 4, image: "/images/banner3.jpg", text: "Big Summer Sale" },
+    { id: 1, image: "/images/banners/quize.jpg", text: "Welcome to Our Shop" },
+    { id: 4, image: "/images/banners/banner.jpg", text: "Big Summer Sale" },
   ];
 
   return (

@@ -10,6 +10,7 @@ import Footer from "./Component/Footer";
 import SnapshotWinzo from "./Component/SnapshotWinzo";
 import Banner from "./Component/Banner";
 import 'animate.css';
+import Snapvideo from "./Component/snapVideo";
 function App() {
   const [theme, setTheme] = useState(null);
 
@@ -54,7 +55,7 @@ function App() {
       <Banner theme = {theme}/>
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />
-      <SnapshotWinzo theme ={theme}/>
+      <Snapvideo theme ={theme}/>
       <Steps theme={theme} />
       <Feature theme={theme}/>
       <WhatYouFindSection theme={theme} />

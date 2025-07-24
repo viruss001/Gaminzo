@@ -17,67 +17,67 @@ import { useInView } from "react-intersection-observer";
 const featuresLeft = [
   {
     icon: <FaLightbulb />,
-    title: "Unique Concept",
-    desc: "Players predict outcomes for each over of a cricket match, offering a fresh twist to traditional fantasy sports.",
+    title: "Unique Game Variety",
+    desc: "Gaminzo offers a powerful mix of Cricket Fantasy, Quiz Challenges, and Stock Market Games – making it the only all-in-one edutainment fantasy platform.",
     color: "from-blue-500 to-emerald-400",
   },
   {
     icon: <FaWallet />,
-    title: "Budget-Friendly Participation",
-    desc: "Join pools for each over with a minimal fee of ₹50, making it accessible for everyone.",
+    title: "Skill-Based & Legal",
+    desc: "All games are 100% skill-based and comply with Indian gaming.",
     color: "from-amber-500 to-emerald-400",
   },
   {
     icon: <FaBullseye />,
-    title: "Dynamic Pool System",
-    desc: "Each over has its own prediction pool, keeping excitement alive throughout the match.",
+    title: "Stock Market Themed Fun",
+    desc: "Gaminzo gamifies market themes like sectors, industries, and trends — without using real money or stock prices.",
     color: "from-purple-500 to-emerald-400",
   },
-  {
-    icon: <FaChartBar />,
-    title: "Flexible Predictions",
-    desc: "Predict runs, wickets, wides, and no-balls for each ball — a wide range of strategic options.",
-    color: "from-red-500 to-emerald-400",
-  },
-  {
-    icon: <FaEdit />,
-    title: "Editing Predictions",
-    desc: "Modify predictions for upcoming overs until the fourth ball is bowled in the current over.",
-    color: "from-emerald-500 to-blue-400",
-  },
+  // {
+  //   icon: <FaChartBar />,
+  //   title: "Flexible Predictions",
+  //   desc: "Predict runs, wickets, wides, and no-balls for each ball — a wide range of strategic options.",
+  //   color: "from-red-500 to-emerald-400",
+  // },
+  // {
+  //   icon: <FaEdit />,
+  //   title: "Editing Predictions",
+  //   desc: "Modify predictions for upcoming overs until the fourth ball is bowled in the current over.",
+  //   color: "from-emerald-500 to-blue-400",
+  // },
 ];
 
 const featuresRight = [
   {
     icon: <FaTrophy />,
-    title: "Rewarding Point System",
-    desc: "Earn points based on how close your predictions match real outcomes — precise pays more.",
+    title: "Smooth UI & Fast Gameplay",
+    desc: "Built with a user-friendly design for fast navigation, instant gameplay, and a fun experience on any smartphone.",
     color: "from-blue-500 to-emerald-400",
   },
   {
     icon: <FaMagic />,
-    title: "Jackpot Points",
-    desc: "Get bonus points for predicting multiple balls correctly in an over.",
+    title: " Real-Time Cricket Fantasy",
+    desc: "Create fantasy cricket teams, apply your sports knowledge, and win exciting rewards – just like your favorite fantasy sports platforms.",
     color: "from-amber-500 to-emerald-400",
   },
   {
     icon: <FaUserFriends />,
-    title: "Large Pool & Prize Distribution",
-    desc: "Up to 200,000 players per pool, with substantial prize money split among winners.",
+    title: " Rewarding System",
+    desc: "Earn real cash prizes, completion certificates, and bonus points for performance and participation!",
     color: "from-purple-500 to-emerald-400",
   },
-  {
-    icon: <FaSyncAlt />,
-    title: "Match Interruption Flexibility",
-    desc: "In case of rain or breaks, points are awarded based on the last completed over.",
-    color: "from-red-500 to-emerald-400",
-  },
-  {
-    icon: <FaWallet />,
-    title: "Easy Wallet System",
-    desc: "Top up and join pools with ease — seamless and fast.",
-    color: "from-emerald-500 to-blue-400",
-  },
+  // {
+  //   icon: <FaSyncAlt />,
+  //   title: "Match Interruption Flexibility",
+  //   desc: "In case of rain or breaks, points are awarded based on the last completed over.",
+  //   color: "from-red-500 to-emerald-400",
+  // },
+  // {
+  //   icon: <FaWallet />,
+  //   title: "Easy Wallet System",
+  //   desc: "Top up and join pools with ease — seamless and fast.",
+  //   color: "from-emerald-500 to-blue-400",
+  // },
 ];
 
 // Animation variants
@@ -231,9 +231,9 @@ const WhySuper6 = ({ theme = "dark" }) => {
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <img
-              src="/images/avtar.png"
+              src="/images/ChatGPT_Image_Jul_24__2025__05_16_24_PM-removebg-preview.png"
               alt="Character"
-              className="max-h-[700px] object-contain"
+              className="max-h-[400px] object-contain"
             />
           </motion.div>
 

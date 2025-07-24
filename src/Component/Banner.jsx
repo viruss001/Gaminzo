@@ -9,10 +9,6 @@ import "swiper/css/navigation";
 const Banner = () => {
   const banners = [
     { id: 1, image: "/images/banners/banner001.jpg", text: "Welcome to Our Shop" },
-    // { id: 1, image: "/images/banners/banner1.png", text: "Welcome to Our Shop" },
-    // { id: 2, image: "/images/banners/banner02.jpg", text: "New Arrivals This Week" },
-    // { id: 3, image: "/images/banners/banner2.png", text: "Big Summer Sale" },
-    // { id: 4, image: "/images/WhatsApp Image 2025-07-24 at 15.14.48_b52db62e.jpg", text: "Big Summer Sale" },
     { id: 4, image: "/images/banner3.jpg", text: "Big Summer Sale" },
   ];
 
@@ -34,7 +30,7 @@ const Banner = () => {
               <img
                 src={banner.image}
                 alt={banner.text}
-                className="w-[100%] max-h-[400px] sm:max-h-[500px] object-contain"
+                className="w-[100%] max-h-[400px] sm:max-h-[500px] object-cover"
               />
 
               {/* Text Overlay */}

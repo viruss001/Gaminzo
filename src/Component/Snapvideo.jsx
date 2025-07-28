@@ -1,150 +1,153 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, EffectCoverflow } from "swiper/modules";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
 const videoList = [
-  { id: 1, src: "/video/vdo.mp4" },
-  { id: 2, src: "/video/vdo.mp4" },
-  { id: 3, src: "/video/vdo.mp4" },
-  { id: 4, src: "/video/vdo.mp4" },
-  { id: 5, src: "/video/vdo.mp4" },
+  { id: 1, src: "/video/vdo.mp4", poster: "/images/gameplay-poster.jpg", title: "Gameplay Highlights", description: "Watch our top players in action", duration: "0:45" },
+  { id: 2, src: "/video/vdo.mp4", poster: "/images/tournament-poster.jpg", title: "Tournament Finals", description: "The most intense matches of the season", duration: "1:12" },
+  { id: 3, src: "/video/vdo.mp4", poster: "/images/features-poster.jpg", title: "New Features", description: "Discover what's new in our latest update", duration: "0:38" },
+  { id: 4, src: "/video/vdo.mp4", poster: "/images/community-poster.jpg", title: "Community Moments", description: "Best moments from our gaming community", duration: "0:56" },
+  { id: 5, src: "/video/vdo.mp4", poster: "/images/behind-scenes-poster.jpg", title: "Behind the Scenes", description: "How we create the gaming experience", duration: "1:24" }
 ];
 
 const VideoCarousel = ({ theme = "dark" }) => {
   const isDark = theme === "dark";
   const videoRefs = useRef([]);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [userInteracted, setUserInteracted] = useState(false);
+  const [swiper, setSwiper] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(2);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
 
-  const handleSlideChange = (swiper) => {
-    const newIndex = swiper.activeIndex;
-    setActiveIndex(newIndex);
-
-    videoRefs.current.forEach((video, index) => {
-      if (video) {
-        if (index === newIndex && userInteracted) {
-          video.play();
-          video.onended = () =>
-            swiper.isEnd ? swiper.slideTo(0) : swiper.slideNext();
+  const playVideoAtIndex = useCallback(
+    (index) => {
+      videoRefs.current.forEach((video, i) => {
+        if (!video) return;
+        if (i === index) {
+          video.muted = isMuted;
+          video.currentTime = 0;
+          video.play().catch(() => console.warn("Autoplay blocked"));
         } else {
           video.pause();
-          video.currentTime = 0;
         }
-      }
-    });
+      });
+      setIsPlaying(true);
+    },
+    [isMuted]
+  );
+
+  const handleSlideChange = (swiperInstance) => {
+    const index = swiperInstance.realIndex;
+    setActiveIndex(index);
+    setProgress(0);
+    playVideoAtIndex(index);
   };
 
-  useEffect(() => {
-    if (userInteracted) {
-      const activeVideo = videoRefs.current[activeIndex];
-      activeVideo?.play().catch(() => {});
+  const togglePlayPause = () => {
+    const video = videoRefs.current[activeIndex];
+    if (!video) return;
+
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
     }
-  }, [userInteracted]);
+  };
+
+  const toggleMute = () => {
+    const video = videoRefs.current[activeIndex];
+    if (!video) return;
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+  };
+
+  // Update progress bar
+  useEffect(() => {
+    const video = videoRefs.current[activeIndex];
+    if (!video) return;
+
+    const updateProgress = () => {
+      if (!isNaN(video.duration)) {
+        setProgress((video.currentTime / video.duration) * 100);
+      }
+    };
+
+    const handleEnded = () => swiper?.slideNext();
+
+    video.addEventListener("timeupdate", updateProgress);
+    video.addEventListener("ended", handleEnded);
+
+    return () => {
+      video.removeEventListener("timeupdate", updateProgress);
+      video.removeEventListener("ended", handleEnded);
+    };
+  }, [activeIndex, swiper]);
+
+  // Play center video on mount
+  useEffect(() => {
+    if (swiper) swiper.slideTo(2, 0);
+    playVideoAtIndex(2);
+  }, [swiper, playVideoAtIndex]);
 
   return (
-    <div
-      className={`w-full flex flex-col items-center py-10 px-4 transition-colors duration-500 ${
-        isDark ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
-      }`}
-    >
-      <motion.h2
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`text-4xl md:text-5xl font-extrabold mb-10 text-center bg-clip-text text-transparent ${
-          isDark
-            ? "bg-gradient-to-r from-emerald-400 to-blue-400"
-            : "bg-gradient-to-r from-blue-500 to-emerald-500"
-        }`}
-      >
-        SNAPSHOT OF GAMINZO
-      </motion.h2>
-
-      <div className="w-full max-w-6xl relative">
-        {!userInteracted && (
-          <div className="absolute inset-0 flex items-center justify-center z-20">
-            <button
-              onClick={() => setUserInteracted(true)}
-              className={`font-bold py-3 px-6 rounded-full text-lg shadow-lg transition ${
-                isDark
-                  ? "bg-blue-500 hover:bg-blue-600 text-white"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
-              }`}
-            >
-              Click to Play Videos
-            </button>
-          </div>
-        )}
-
+    <div className={`w-full flex flex-col items-center py-20 px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+      <div className="relative max-w-7xl w-full">
         <Swiper
-          modules={[Navigation]}
-          navigation
-          slidesPerView={1}
-          spaceBetween={20}
-          centeredSlides
-          breakpoints={{
-            640: { slidesPerView: 1, spaceBetween: 10 },
-            768: { slidesPerView: 2, spaceBetween: 15 },
-            1024: { slidesPerView: 3, spaceBetween: 20 },
-          }}
+          modules={[Navigation, EffectCoverflow]}
+          onSwiper={setSwiper}
           onSlideChange={handleSlideChange}
-          onSwiper={(swiper) => handleSlideChange(swiper)}
-          className="w-full"
+          navigation
+          effect="coverflow"
+          coverflowEffect={{ rotate: 0, stretch: 0, depth: 100, modifier: 2.5, slideShadows: false }}
+          slidesPerView={1.5}
+          centeredSlides
+          loop
+          initialSlide={2}
+          breakpoints={{ 640: { slidesPerView: 1.8 }, 768: { slidesPerView: 2.3 }, 1024: { slidesPerView: 3, spaceBetween: 40 } }}
+          className="w-full pb-16"
         >
-          {videoList.map((vid, index) => (
-            <SwiperSlide key={vid.id} className="h-[300px] md:h-[400px]">
+          {videoList.map((video, index) => (
+            <SwiperSlide key={video.id} className="h-[400px]">
               <motion.div
-                className={`relative rounded-xl overflow-hidden shadow-lg w-full h-full transition-all duration-300 ${
-                  activeIndex === index ? "scale-105" : "scale-95 opacity-70"
+                className={`relative rounded-2xl overflow-hidden shadow-xl w-full h-full transition-all duration-300 ${
+                  activeIndex === index ? "scale-100" : "scale-90 opacity-80"
                 }`}
+                whileHover={{ scale: activeIndex === index ? 1.05 : 0.95 }}
               >
-                {activeIndex === index && (
-                  <motion.div
-                    className={`absolute inset-0 rounded-xl p-[3px] ${
-                      isDark
-                        ? "bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-500"
-                        : "bg-gradient-to-r from-blue-500 via-emerald-400 to-purple-400"
-                    }`}
-                    animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                  >
-                    <div
-                      className={`w-full h-full rounded-xl ${
-                        isDark ? "bg-gray-900" : "bg-white"
-                      }`}
-                    />
-                  </motion.div>
-                )}
-
                 <video
                   ref={(el) => (videoRefs.current[index] = el)}
-                  src={vid.src}
-                  className="relative w-full h-full object-cover rounded-xl"
+                  src={video.src}
+                  poster={video.poster}
+                  className="w-full h-full object-cover rounded-2xl"
+                  muted={isMuted}
                   playsInline
-                  muted={!userInteracted}
-                  preload="auto"
+                  preload="metadata"
                 />
-
-                {!userInteracted && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-xl">
-                    <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8 text-gray-800"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
+                {/* Info Overlay */}
+                <div className={`absolute top-4 left-4 right-4 p-3 rounded-lg ${isDark ? "bg-black/60 text-white" : "bg-white/80 text-gray-800"}`}>
+                  <h3 className="font-bold">{video.title}</h3>
+                  <p className="text-sm">{video.description}</p>
+                </div>
+                {/* Controls */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center gap-4">
+                  <button onClick={togglePlayPause} aria-label={isPlaying ? "Pause Video" : "Play Video"} className={`p-2 rounded-full ${isDark ? "bg-black/60 text-white" : "bg-white/80 text-gray-800"}`}>
+                    {isPlaying ? <FaPause /> : <FaPlay />}
+                  </button>
+                  <button onClick={toggleMute} aria-label={isMuted ? "Unmute Video" : "Mute Video"} className={`p-2 rounded-full ${isDark ? "bg-black/60 text-white" : "bg-white/80 text-gray-800"}`}>
+                    {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+                  </button>
+                  <div className={`flex-1 h-1 rounded-full ${isDark ? "bg-gray-700" : "bg-gray-300"}`}>
+                    <div className={`h-full rounded-full ${isDark ? "bg-emerald-400" : "bg-blue-500"}`} style={{ width: `${progress}%` }} />
                   </div>
-                )}
+                  <span className={`text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>{video.duration}</span>
+                </div>
               </motion.div>
             </SwiperSlide>
           ))}

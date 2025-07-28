@@ -1,12 +1,15 @@
 import { useEffect, useRef, useMemo } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useMotionValue, useSpring } from "framer-motion";
 
 function CountUp({ to, from = 0, duration = 2, separator = "", className = "" }) {
   const ref = useRef(null);
   const motionValue = useMotionValue(from);
   const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
 
-  const decimals = Math.max((from.toString().split(".")[1] || "").length, (to.toString().split(".")[1] || "").length);
+  const decimals = Math.max(
+    (from.toString().split(".")[1] || "").length,
+    (to.toString().split(".")[1] || "").length
+  );
 
   useEffect(() => {
     motionValue.set(to);
@@ -39,7 +42,6 @@ function CountUp({ to, from = 0, duration = 2, separator = "", className = "" })
 export default function CounterStats({ theme = "light" }) {
   const isDark = theme === "dark";
 
-  // Pre-generate particle positions (no random in render)
   const particles = useMemo(
     () =>
       Array.from({ length: 15 }, () => ({
@@ -52,11 +54,11 @@ export default function CounterStats({ theme = "light" }) {
 
   return (
     <section
-      className={`relative w-full min-h-[30vh] flex items-center justify-center ${
+      className={`relative w-full min-h-[30vh] flex items-center ${
         isDark ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
       }`}
     >
-      {/* Optimized Particle background */}
+      {/* Particle background */}
       <div className="absolute inset-0 overflow-hidden mt-10">
         {particles.map((p, i) => (
           <div
@@ -67,21 +69,27 @@ export default function CounterStats({ theme = "light" }) {
         ))}
       </div>
 
-      {/* Counters */}
-      <div className="flex flex-row flex-wrap gap-x-12 gap-y-4 items-center justify-center max-w-6xl relative z-10">
-        <div className="flex flex-col items-center">
+      {/* Counters aligned start - center - end */}
+      <div className="flex w-full max-w-6xl mx-auto relative z-10 
+                      flex-col md:flex-row md:justify-between md:items-center gap-y-8 px-6">
+        {/* Start */}
+        <div className="flex flex-col items-start">
           <span className="text-5xl font-extrabold bg-gradient-to-r from-blue-700 to-green-500 bg-clip-text text-transparent">
             <CountUp to={12500} separator="," duration={2.5} />
           </span>
           <span className="mt-2 text-lg font-medium">Downloads</span>
         </div>
+
+        {/* Center */}
         <div className="flex flex-col items-center">
           <span className="text-5xl font-extrabold bg-gradient-to-r from-blue-700 to-green-500 bg-clip-text text-transparent">
             <CountUp to={4.8} duration={2} />
           </span>
           <span className="mt-2 text-lg font-medium">User Rating</span>
         </div>
-        <div className="flex flex-col items-center">
+
+        {/* End */}
+        <div className="flex flex-col items-end">
           <span className="text-5xl font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
             <CountUp to={3500} separator="," duration={2.5} />
           </span>

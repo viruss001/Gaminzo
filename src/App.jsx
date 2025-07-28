@@ -58,9 +58,9 @@ function App() {
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />
       <Snapvideo theme ={theme}/>
-      <Steps theme={theme} />
+      {/* <Steps theme={theme} /> */}
       <Feature theme={theme}/>
-      <WhatYouFindSection theme={theme} />
+      {/* <WhatYouFindSection theme={theme} /> */}
       <Footer theme={theme}/>
     </div>
   );

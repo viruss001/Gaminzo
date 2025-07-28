@@ -7,7 +7,7 @@ import "swiper/css/effect-fade";
 
 const banners = [
   { id: 1, image: "/images/banners/quize.webp" },
-  { id: 2, image: "/images/banners/banner.webp" },
+  { id: 2, image: "/images/banners/banner001.webp" },
   { id: 3, image: "/images/banners/banner03.webp" },
   // { id: 4, image: "/images/banners/banner.webp" },
 ];

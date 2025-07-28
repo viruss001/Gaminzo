@@ -200,7 +200,7 @@ const WhyChooseUs = ({ theme = "light" }) => {
   const features = useMemo(() => featuresData, []);
 
   return (
-    <section className={`relative w-full py-16 sm:py-20 mt-[-5rem] px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <section className={`relative w-full py-16 sm:py-20 mt-[-8rem] px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
       <div className="max-w-7xl mx-auto text-center">
         <h2
           className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text  text-transparent bg-gradient-to-r ${

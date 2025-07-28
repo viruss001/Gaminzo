@@ -12,6 +12,8 @@ import Banner from "./Component/Banner";
 import 'animate.css';
 import Snapvideo from "./Component/Snapvideo";
 import CounterStats from "./Component/CounterStats";
+import AppPromo from "./Component/AppPromo";
+import BadgesSection from './Component/BadgesSection'
 function App() {
   const [theme, setTheme] = useState(null);
 
@@ -57,8 +59,9 @@ function App() {
       <CounterStats theme = {theme}/>
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />
+      {/* <BadgesSection theme = {theme}/> */}
       <Snapvideo theme ={theme}/>
-      {/* <Steps theme={theme} /> */}
+      <AppPromo theme={theme} />
       <Feature theme={theme}/>
       {/* <WhatYouFindSection theme={theme} /> */}
       <Footer theme={theme}/>

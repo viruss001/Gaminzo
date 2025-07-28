@@ -6,11 +6,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const videoList = [
-  { id: 1, src: "/video/6498520-uhd_2160_3840_25fps.mp4" },
-  { id: 2, src: "/video/6498520-uhd_2160_3840_25fps.mp4" },
-  { id: 3, src: "/video/6498520-uhd_2160_3840_25fps.mp4" },
-  { id: 4, src: "/video/6498520-uhd_2160_3840_25fps.mp4" },
-  { id: 5, src: "/video/6498520-uhd_2160_3840_25fps.mp4" },
+  { id: 1, src: "/video/vdo.mp4" },
+  { id: 2, src: "/video/vdo.mp4" },
+  { id: 3, src: "/video/vdo.mp4" },
+  { id: 4, src: "/video/vdo.mp4" },
+  { id: 5, src: "/video/vdo.mp4" },
 ];
 
 const VideoCarousel = ({ theme = "dark" }) => {

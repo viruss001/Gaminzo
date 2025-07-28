@@ -62,7 +62,7 @@ const Banner = () => {
                 src={banner.image}
                 alt=""
                 loading="lazy"
-                className="w-full max-h-[400px] sm:max-h-[500px] object-cover transition-transform duration-700 ease-out transform scale-105 group-hover:scale-110"
+                className="w-full max-h-[400px] sm:max-h-[500px] object-cover transition-transform duration-700 ease-out transform  "
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
             </div>

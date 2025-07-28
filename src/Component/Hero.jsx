@@ -114,7 +114,7 @@ const Hero = ({ theme = "light" }) => {
           >
             Play Smart.
             <br />
-            <span className="bg-gradient-to-r from-[#1a418c] to-[#2a964a] bg-clip-text text-transparent">
+            <span className={`${isDark?"bg-[yellow]":"bg-gradient-to-r from-[#1a418c] to-[#2a964a]"} bg-clip-text text-transparent`}>
               Win Big.
             </span>
           </h1>
@@ -196,7 +196,7 @@ const Hero = ({ theme = "light" }) => {
                     className: "text-2xl text-white",
                   })}
                 </motion.div>
-                <h4 className="font-semibold text-xl sm:text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                <h4 className={`font-semibold text-xl sm:text-2xl bg-clip-text text-transparent ${isDark ?"bg-white":"bg-black"}`}>
                   {feature.title}
                 </h4>
 

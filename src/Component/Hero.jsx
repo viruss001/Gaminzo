@@ -2,33 +2,34 @@ import React from "react";
 import {
   FaTrophy,
   FaChartLine,
-  FaDraftingCompass,
-  FaMoneyBillWave,
+  FaCoins,
 } from "react-icons/fa";
+import { GiCricketBat } from "react-icons/gi"; // ✅ Added cricket icon
 import { motion } from "framer-motion";
 
 const features = [
   {
-    icon: <FaChartLine />,
-    title: "Live Stats",
+    icon: <GiCricketBat />,  // ✅ Replaced FaCricket
+    title: "Cricket",
     color: "from-blue-500 to-emerald-400",
   },
   {
-    icon: <FaTrophy />,
-    title: "Contests",
+    icon: <FaChartLine />,
+    title: "StoxMania",
     color: "from-yellow-500 to-emerald-400",
   },
   {
-    icon: <FaDraftingCompass />,
-    title: "Smart Drafting",
+    icon: <FaTrophy />,
+    title: "Quize Champ",
     color: "from-purple-500 to-emerald-400",
   },
   {
-    icon: <FaMoneyBillWave />,
-    title: "Fast Withdrawals",
+    icon: <FaCoins />,
+    title: "Earn Coins",
     color: "from-green-500 to-blue-400",
   },
 ];
+
 
 const iconFloatVariants = {
   float: {
@@ -95,7 +96,7 @@ const Hero = ({ theme = "light" }) => {
         })}
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10 mt-[-5rem]">
         {/* Text Column */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}

@@ -11,6 +11,7 @@ import SnapshotWinzo from "./Component/SnapshotWinzo";
 import Banner from "./Component/Banner";
 import 'animate.css';
 import Snapvideo from "./Component/Snapvideo";
+import CounterStats from "./Component/CounterStats";
 function App() {
   const [theme, setTheme] = useState(null);
 
@@ -53,6 +54,7 @@ function App() {
 
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Banner theme = {theme}/>
+      <CounterStats theme = {theme}/>
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />
       <Snapvideo theme ={theme}/>

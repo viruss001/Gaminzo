@@ -1,187 +1,173 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  FaDownload,
-  FaClipboardCheck,
-  FaUsers,
-  FaPlug,
-  FaGift,
-} from "react-icons/fa";
-import { useInView } from "react-intersection-observer";
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { FaBolt, FaRobot, FaGlobe, FaLock, FaShieldAlt, FaUsers } from "react-icons/fa";
 
-const steps = [
+// ==== FEATURES DATA ====
+const features = [
   {
-    icon: <FaDownload />,
-    title: "Install App",
-    description:
-      "Download our fantasy app and sign up within seconds to kick off your journey.",
+    title: "Instant Withdrawals",
+    desc: "Cash out your earnings instantly, no delays.",
+    icon: <FaBolt />,
+    color: "from-yellow-400 to-emerald-400",
+    glowColor: "255, 193, 7",
+  },
+  {
+    title: "AI Draft Assistant",
+    desc: "Smart recommendations powered by real-time stats.",
+    icon: <FaRobot />,
+    color: "from-pink-500 to-emerald-400",
+    glowColor: "236, 72, 153",
+  },
+  {
+    title: "Fair Play Certified",
+    desc: "Audited and transparent to ensure trust and fairness.",
+    icon: <FaLock />,
     color: "from-blue-500 to-emerald-400",
+    glowColor: "59, 130, 246",
   },
   {
-    icon: <FaClipboardCheck />,
-    title: "Select Match",
-    description:
-      "Pick your favorite upcoming match and dive into strategic play.",
-    color: "from-amber-500 to-emerald-400",
+    title: "Global Tournaments",
+    desc: "Play with users worldwide & win real cash prizes.",
+    icon: <FaGlobe />,
+    color: "from-green-500 to-blue-400",
+    glowColor: "16, 185, 129",
   },
   {
+    title: "Secure Payments",
+    desc: "Top-level encryption keeps your funds safe.",
+    icon: <FaShieldAlt />,
+    color: "from-purple-500 to-indigo-400",
+    glowColor: "139, 92, 246",
+  },
+  {
+    title: "Community Events",
+    desc: "Join exciting events & grow with a strong community.",
     icon: <FaUsers />,
-    title: "Create Dream Team",
-    description:
-      "Build your ultimate squad from both teams using real-time stats.",
-    color: "from-purple-500 to-emerald-400",
-  },
-  {
-    icon: <FaPlug />,
-    title: "Join Contests",
-    description:
-      "Enter thrilling contests and test your skill against top players.",
-    color: "from-red-500 to-emerald-400",
-  },
-  {
-    icon: <FaGift />,
-    title: "Win Rewards",
-    description:
-      "Climb the leaderboard and cash out your real-time winnings instantly.",
-    color: "from-emerald-500 to-blue-400",
+    color: "from-red-500 to-orange-400",
+    glowColor: "239, 68, 68",
   },
 ];
 
-// Animations
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
+// ==== CARD COMPONENT WITH 3D MOVEMENT ====
+const ParticleCard = ({ children, className = "", glowColor = "132,0,255" }) => {
+  const cardRef = useRef(null);
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+
+  const handleMouseMove = (e) => {
+    const rect = cardRef.current.getBoundingClientRect();
+    const posX = e.clientX - rect.left;
+    const posY = e.clientY - rect.top;
+    const midX = rect.width / 2;
+    const midY = rect.height / 2;
+
+    rotateX.set(((posY - midY) / midY) * -20);
+    rotateY.set(((posX - midX) / midX) * 20);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{
+        rotateX,
+        rotateY,
+        perspective: 1000,
+      }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`relative overflow-hidden ${className}`}
+    >
+      {/* Hover Glow Effect */}
+      <div
+        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition duration-300"
+        style={{
+          background: `radial-gradient(circle, rgba(${glowColor},0.4) 0%, rgba(${glowColor},0.1) 70%)`,
+        }}
+      />
+      {children}
+    </motion.div>
+  );
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "backOut" } },
-  hover: { y: -10, transition: { duration: 1 } },
-};
-
-const iconFloatVariants = {
-  float: {
-    y: [0, -15, 0],
-    rotate: [0, 5, 0],
-    transition: { duration: 4 + Math.random() * 3, repeat: Infinity, ease: "easeInOut" },
-  },
-  hover: { scale: 1.2, rotate: 10, transition: { duration: 0.3 } },
-};
-
-const OnboardingSteps = ({ theme = "light" }) => {
+// ==== MAIN STEPS SECTION (NOW WITH THEME) ====
+const Steps = ({ theme = "light" }) => {
   const isDark = theme === "dark";
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <section
-      ref={ref}
-      className={`relative w-full min-h-screen py-20 px-4 overflow-hidden ${
-        isDark ? "bg-gray-900" : "bg-gray-50"
+      className={`relative w-full py-20 px-4 transition-colors duration-300 ${
+        isDark ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-800"
       }`}
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-emerald-400/20 to-blue-500/20 blur-3xl"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={
-            inView
-              ? { opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }
-              : {}
-          }
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/20 to-emerald-400/20 blur-3xl"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={
-            inView
-              ? { opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }
-              : {}
-          }
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+      <div className="max-w-7xl mx-auto text-center relative z-10">
+        <h2
+          className={`text-4xl sm:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${
+            isDark
+              ? "from-emerald-400 to-blue-400"
+              : "from-blue-600 to-emerald-600"
+          }`}
         >
-          <h2
-            className={`text-4xl sm:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r ${
-              isDark
-                ? "from-emerald-400 to-blue-400"
-                : "from-blue-600 to-emerald-600"
-            }`}
-          >
-            We Think About You
-          </h2>
-          <motion.p
-            className={`mt-4 text-lg ${
-              isDark ? "text-gray-300" : "text-gray-700"
-            } max-w-xl mx-auto`}
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Every step of the way!
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center"
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          Why Choose Us
+        </h2>
+        <p
+          className={`mt-4 text-lg max-w-xl mx-auto ${
+            isDark ? "text-gray-300" : "text-gray-700"
+          }`}
         >
-          {steps.map((step, idx) => (
-            <motion.div
-              key={step.title}
-              variants={cardVariants}
-              whileHover="hover"
-              className="relative w-80 h-80 group"
-              style={{ clipPath: "polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%)" }}
+          Experience fantasy sports like never before — smarter, faster, and fairer.
+        </p>
+
+        {/* === GRID 2 ROWS (3 + 3) === */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 mt-16 place-items-center">
+          {features.map((feature, idx) => (
+            <ParticleCard
+              key={idx}
+              className={`w-72 h-72 rounded-3xl p-[2px] group relative ${
+                isDark ? "bg-gray-800" : "bg-white"
+              }`}
+              glowColor={feature.glowColor}
             >
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-70 blur-md transition-opacity duration-300 rounded-3xl" />
-
               {/* Card Content */}
               <div
-                className={`relative z-10 h-full flex flex-col items-center justify-center text-center px-8 py-10 ${
+                className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-6 py-8 ${
                   isDark
-                    ? "bg-gray-800/80 backdrop-blur-md border border-white/10 text-white"
-                    : "bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-800"
-                }`}
+                    ? "bg-gray-800/90 text-gray-200"
+                    : "bg-white/90 text-gray-800"
+                } backdrop-blur-sm`}
               >
-                {/* Floating Icon */}
                 <motion.div
-                  variants={iconFloatVariants}
-                  animate="float"
-                  whileHover="hover"
-                  className={`flex items-center justify-center w-20 h-20 mb-6 rounded-full bg-gradient-to-br ${step.color} shadow-lg`}
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 3 }}
+                  className={`flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-br ${feature.color} shadow-lg`}
                 >
-                  {React.cloneElement(step.icon, { className: "text-3xl text-white" })}
+                  {React.cloneElement(feature.icon, { className: "text-2xl text-white" })}
                 </motion.div>
-
-                <h3 className="font-bold text-2xl tracking-wide mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-                  {step.title}
+                <h3
+                  className={`font-bold text-xl tracking-wide mb-2 bg-clip-text text-transparent bg-gradient-to-r ${
+                    isDark
+                      ? "from-emerald-400 to-blue-400"
+                      : "from-blue-400 to-emerald-400"
+                  }`}
+                >
+                  {feature.title}
                 </h3>
-                <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-                  {step.description}
+                <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                  {feature.desc}
                 </p>
               </div>
-            </motion.div>
+            </ParticleCard>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default OnboardingSteps;
+export default Steps;

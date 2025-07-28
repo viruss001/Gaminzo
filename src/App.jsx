@@ -9,11 +9,12 @@ import Feature from "./Component/Feature";
 import Footer from "./Component/Footer";
 import SnapshotWinzo from "./Component/SnapshotWinzo";
 import Banner from "./Component/Banner";
-import 'animate.css';
+import "animate.css";
 import Snapvideo from "./Component/Snapvideo";
 import CounterStats from "./Component/CounterStats";
 import AppPromo from "./Component/AppPromo";
-import BadgesSection from './Component/BadgesSection'
+import BadgesSection from "./Component/BadgesSection";
+
 function App() {
   const [theme, setTheme] = useState(null);
 
@@ -38,33 +39,28 @@ function App() {
   if (!theme) return null;
 
   return (
-    <div className={`relative min-h-screen transition-colors duration-500 ${theme === "dark" ? "text-white" : "text-black"}`}>
-      {/* Dynamic Background Image */}
-      {/* <div className="absolute inset-0 -z-10">
-        <img
-          src={
-            theme === "dark"
-              ? "/ABSTRACT_WALLPAPER_Mesa_de_trabajo_1.jpg"
-              : "/images/5143237.jpg"
-          }
-          alt="background"
-          className="w-full h-full object-cover"
-        />
-      </div> */}
+    <div
+      className={`relative min-h-screen transition-colors duration-500 ${
+        theme === "dark" ? "text-white bg-gray-900" : "text-black bg-gray-50"
+      }`}
+    >
+      {/* Dynamic Background Layer */}
+      <div className="absolute inset-0 -z-10">
+        {/* Place only background images or gradient here */}
+      </div>
 
       {/* Page Sections */}
-
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <Banner theme = {theme}/>
-      <CounterStats theme = {theme}/>
+      <Banner theme={theme} />
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />
-      {/* <BadgesSection theme = {theme}/> */}
-      <Snapvideo theme ={theme}/>
+      {/* <BadgesSection theme={theme}/> */}
+      <Snapvideo theme={theme} />
       <AppPromo theme={theme} />
-      <Feature theme={theme}/>
+      <Feature theme={theme} />
+      <CounterStats theme={theme} />
       {/* <WhatYouFindSection theme={theme} /> */}
-      <Footer theme={theme}/>
+      <Footer theme={theme} />
     </div>
   );
 }

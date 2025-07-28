@@ -2,6 +2,7 @@ import { useEffect, useRef, useMemo } from "react";
 import { useMotionValue, useSpring, motion } from "framer-motion";
 import { FaDownload, FaStar, FaUsers } from "react-icons/fa";
 
+// CountUp component animating simple numbers only
 function CountUp({ to, from = 0, duration = 2, separator = "", className = "", decimals = 0 }) {
   const ref = useRef(null);
   const motionValue = useMotionValue(from);
@@ -40,16 +41,16 @@ export default function CounterStats({ theme = "light" }) {
 
   const stats = useMemo(
     () => [
-      { value: 12500, label: "Downloads", icon: FaDownload, gradient: "from-blue-500 to-emerald-400", duration: 2.5, separator: "," },
-      { value: 4.8, label: "User Rating", icon: FaStar, gradient: "from-yellow-400 to-yellow-600", duration: 2, decimals: 1, suffix: "/5" },
-      { value: 3500, label: "Active Users", icon: FaUsers, gradient: "from-purple-500 to-pink-400", duration: 2.5, separator: "," },
-      { value: 1000, label: "Customer Reviews", icon: FaUsers, gradient: "from-pink-400 to-red-400", duration: 2.5, separator: "," },
+      { value: 10, suffix: "L", label: "Downloads", icon: FaDownload, gradient: "from-blue-500 to-emerald-400", duration: 2.5 },
+      { value: 4.8, suffix: "", label: "User Rating", icon: FaStar, gradient: "from-yellow-400 to-yellow-600", duration: 2 },
+      { value: 5, suffix: "L", label: "Active Users", icon: FaUsers, gradient: "from-purple-500 to-pink-400", duration: 2.5 },
+      { value: 10, suffix: "k", label: "Customer Reviews", icon: FaUsers, gradient: "from-pink-400 to-red-400", duration: 2.5 },
     ],
     []
   );
 
   return (
-    <section className={`relative w-100vw py-12 flex justify-center ${isDark ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}>
+    <section className={`relative w-full py-12 flex justify-center ${isDark ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}>
       <motion.div
         className="relative max-w-7xl w-full mx-auto px-4 p-[2px] rounded-3xl group"
         style={{
@@ -78,7 +79,7 @@ export default function CounterStats({ theme = "light" }) {
                   <Icon className="text-white text-2xl leading-none " />
                 </div>
                 <div className={`text-3xl font-extrabold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
-                  <CountUp to={stat.value} separator={stat.separator} duration={stat.duration} decimals={stat.decimals} />
+                  <CountUp to={stat.value} duration={stat.duration} decimals={stat.value % 1 !== 0 ? 1 : 0} />
                   {stat.suffix && <span className="text-xl">{stat.suffix}</span>}
                 </div>
                 <span className={`text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-600"}`}>{stat.label}</span>

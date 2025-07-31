@@ -17,13 +17,19 @@ const IntellectualPropertyPolicy = ({ theme = "light" }) => {
 
   return (
     <motion.div
-      className={`max-w-5xl mx-auto p-6 ${
-        isDark ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
-      }`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
+             className={`container mx-auto  sm:px-0 md:px-0 py-0 ${
+               isDark ? " text-white" : " text-gray-900"
+             }`}
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.6 }}
+           >
+          <div
+            className={`rounded-2xl  sm:p-6 md:p-8 shadow-xl text-justify backdrop-blur-md border space-y-8 md:space-y-12 ${
+              isDark ? "bg-gray-800/60 border-gray-700" : "bg-white/80 border-gray-200"
+            }`}
+          >
+            
       {/* Title */}
       <h1 className="text-4xl font-extrabold mb-4 text-center bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
         Intellectual Property Policy – Gaminzo
@@ -33,7 +39,7 @@ const IntellectualPropertyPolicy = ({ theme = "light" }) => {
       </p>
 
       <div
-        className={`rounded-2xl p-8 shadow-xl text-justify backdrop-blur-md border space-y-12 ${
+        className={`rounded-2xl p-2 shadow-xl text-justify backdrop-blur-md border space-y-12 ${
           isDark ? "bg-gray-800/60 border-gray-700" : "bg-white/80 border-gray-200"
         }`}
       >
@@ -201,6 +207,7 @@ const IntellectualPropertyPolicy = ({ theme = "light" }) => {
             belong to their respective owners.
           </p>
         </motion.section>
+      </div>
       </div>
     </motion.div>
   );

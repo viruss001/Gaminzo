@@ -287,7 +287,7 @@ const PoliciesPage = ({ theme = "light" }) => {
 </div>
         <div className="mt-12" >
           {selectedPolicy ? (
-            <div className={`p-6 rounded-lg ${isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}>
+            <div className={`rounded-lg ${isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}>
               {selectedPolicy.component}
             </div>
           ) : (

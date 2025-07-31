@@ -32,9 +32,9 @@ const Footer = ({ theme }) => {
       <div className="max-w-7xl mx-auto grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand / About */}
         <div>
-          <h2 className="text-2xl font-bold text-green-400 mb-2">Gaminzo</h2>
+          <h2 className="text-2xl font-bold text-[#2a964a] mb-2">Gaminzo</h2>
           <p className="text-sm leading-relaxed">
-            Super6 brings a revolutionary twist to fantasy cricket with per-over predictions, budget-friendly entry, and huge prize pools.
+            Gaminzo brings a revolutionary twist to fantasy cricket with per-over predictions, budget-friendly entry, and huge prize pools.
           </p>
         </div>
 

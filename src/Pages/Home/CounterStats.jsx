@@ -65,7 +65,7 @@ export default function CounterStats({ theme = "light" }) {
       },
       { 
         value: 4.8, 
-        suffix: "/5", 
+        suffix: "", 
         label: "User Rating", 
         icon: FaStar, 
         gradient: "from-yellow-400 to-amber-500", 

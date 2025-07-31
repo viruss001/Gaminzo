@@ -1,19 +1,11 @@
-// App.jsx
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route,Navigate  } from "react-router-dom";  // <-- Added
 import Navbar from "./Component/Navbar";
-import Hero from "./Component/Hero";
-import WhyChooseUs from "./Component/WhyChooseUs";
-import Steps from "./Component/Steps";
-import WhatYouFindSection from "./Component/WhatYouFindSection";
-import Feature from "./Component/Feature";
 import Footer from "./Component/Footer";
-import SnapshotWinzo from "./Component/SnapshotWinzo";
-import Banner from "./Component/Banner";
-import "animate.css";
-import Snapvideo from "./Component/Snapvideo";
-import CounterStats from "./Component/CounterStats";
-import AppPromo from "./Component/AppPromo";
-import BadgesSection from "./Component/BadgesSection";
+import Main from "./Pages/Home/Main";
+import AboutHome from './Pages/About/AboutHome'
+import Policies from "./Pages/Policy/Policies.jsx"
+import Contact from "./Pages/Contact/Contact.jsx";
 
 function App() {
   const [theme, setTheme] = useState(null);
@@ -44,23 +36,28 @@ function App() {
         theme === "dark" ? "text-white bg-gray-900" : "text-black bg-gray-50"
       }`}
     >
-      {/* Dynamic Background Layer */}
-      <div className="absolute inset-0 -z-10">
-        {/* Place only background images or gradient here */}
-      </div>
+      {/* Background Layer */}
+      <div
+        className="absolute inset-0 -z-10 opacity-30"
+        style={{
+          background: theme === "dark"
+            ? "radial-gradient(circle at top, #1f2937, #111827)"
+            : "radial-gradient(circle at top, #ffffff, #e5e7eb)",
+        }}
+      ></div>
 
-      {/* Page Sections */}
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <Banner theme={theme} />
-      <Hero theme={theme} />
-      <WhyChooseUs theme={theme} />
-      {/* <BadgesSection theme={theme}/> */}
-      <Snapvideo theme={theme} />
-      <AppPromo theme={theme} />
-      <Feature theme={theme} />
-      <CounterStats theme={theme} />
-      {/* <WhatYouFindSection theme={theme} /> */}
-      <Footer theme={theme} />
+      <BrowserRouter>
+        <Navbar theme={theme} toggleTheme={toggleTheme} /> {/* Inside Router */}
+        <Routes>
+          <Route path="/" element={<Main theme={theme} />} />
+          <Route path="/about-us" element={<AboutHome theme={theme} />} />
+          <Route path="/policy" element={<Policies theme={theme} />} />
+          <Route path="/contact" element={<Contact theme={theme} />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+        <Footer theme={theme} />
+
+      </BrowserRouter>
     </div>
   );
 }

@@ -38,8 +38,8 @@ const ContactForm = ({ theme = 'light' }) => {
             <h3 className="text-2xl font-bold">Our Information</h3>
             <div className="space-y-6">
               {[
-                { icon: <FaPhoneAlt />, title: "Phone", value: "+1 (123) 456-7890" },
-                { icon: <FaEnvelope />, title: "Email", value: "gaminzo@supoort.com" },
+                { icon: <FaPhoneAlt />, title: "Phone", value: "+91 7090708083" },
+                { icon: <FaEnvelope />, title: "Email", value: "help@gaminzo.com" },
                 { icon: <FaMapMarkerAlt />, title: "Address", value: "Banglore" }
               ].map((info, i) => (
                 <div key={i} className="flex items-start gap-4">

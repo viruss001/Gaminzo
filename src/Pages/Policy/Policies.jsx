@@ -1,10 +1,15 @@
 import React, { useRef, useEffect, useState, useCallback, useMemo } from "react";
-import {FaShieldAlt,
-FaUndo,
-FaFileContract,
-FaGamepad,
-FaLightbulb,
-FaIdCard} from "react-icons/fa";
+import { 
+  FaShieldAlt,
+  FaUndo,
+  FaFileContract,
+  FaGamepad,
+  FaLightbulb,
+  FaIdCard,
+  FaBalanceScale,
+  FaHandsHelping,
+  FaMoneyBillWave,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import Policy1 from "./Policy1";
@@ -13,6 +18,9 @@ import Policy3 from "./Policy3";
 import Policy4 from "./Policy4";
 import Policy5 from "./Policy5";
 import Policy6 from "./Policy6";
+import Policy7 from "./Policy7";
+import Policy8 from "./Policy8";
+import Policy9 from "./Policy9";
 
 // --- constants ---
 const DEFAULT_PARTICLE_COUNT = 12;
@@ -179,53 +187,79 @@ const PoliciesPage = ({ theme = "light" }) => {
     () => [
   {
     title: "Privacy Policy",
-    desc: "Learn how we collect, store, and protect your personal data on our platform.",
-    icon: <FaShieldAlt />,
+    desc: "Learn how we collect, use, store, and protect your personal information on our platform.",
+    icon: <FaShieldAlt />, // security & privacy icon
     color: "from-purple-500 to-indigo-400",
     glowColor: "168, 85, 247",
     component: <Policy4 />,
   },
   {
     title: "Refund & Cancellation",
-    desc: "Understand how refunds and cancellations are processed fairly and transparently.",
-    icon: <FaUndo />,
+    desc: "Understand our fair and transparent process for handling refunds and cancellations.",
+    icon: <FaUndo />, // refund/cancellation symbol
     color: "from-pink-500 to-red-400",
     glowColor: "236, 72, 153",
     component: <Policy2 />,
   },
   {
     title: "Terms & Conditions",
-    desc: "Read our guidelines and terms for using our services responsibly.",
-    icon: <FaFileContract />,
+    desc: "Review the rules, responsibilities, and conditions for using our services.",
+    icon: <FaFileContract />, // legal documents icon
     color: "from-green-500 to-emerald-400",
     glowColor: "16, 185, 129",
     component: <Policy3 />,
   },
   {
     title: "Responsible Gaming",
-    desc: "Promoting safe, healthy, and responsible gaming practices for everyone.",
-    icon: <FaGamepad />,
+    desc: "Promoting safe, balanced, and responsible gaming practices for a healthy experience.",
+    icon: <FaGamepad />, // gaming icon
     color: "from-yellow-400 to-orange-400",
     glowColor: "255, 193, 7",
     component: <Policy1 />,
   },
   {
     title: "Intellectual Property Policy",
-    desc: "Guidelines to protect and respect intellectual property on our platform.",
-    icon: <FaLightbulb />, // better suited for IP rights
+    desc: "Understand how intellectual property rights are protected and respected on our platform.",
+    icon: <FaLightbulb />, // innovation & IP
     color: "from-blue-500 to-cyan-400",
     glowColor: "59, 130, 246",
     component: <Policy5 />,
   },
   {
-    title: "KYC & AML (ANTI-MONEY LAUNDERING) POLICY",
-    desc: "Know Your Customer and Anti-Money Laundering compliance details.",
-    icon: <FaIdCard />, // better suited for KYC/AML
+    title: "KYC & AML (Anti-Money Laundering) Policy",
+    desc: "Our compliance measures to verify customer identity and prevent money laundering activities.",
+    icon: <FaIdCard />, // identity verification icon
     color: "from-red-500 to-rose-400",
     glowColor: "239, 68, 68",
     component: <Policy6 />,
   },
+  {
+    title: "Fair Play Policy",
+    desc: "Ensuring fairness, transparency, and a cheat-free gaming experience for all players.",
+    icon: <FaBalanceScale />, // fairness & justice icon
+    color: "from-teal-500 to-green-400",
+    glowColor: "20, 184, 166",
+    component: <Policy7 />,
+  },
+  {
+    title: "Grievance Redressal Policy",
+    desc: "A structured process for addressing and resolving user concerns effectively and efficiently.",
+    icon: <FaHandsHelping />, // assistance/support icon
+    color: "from-indigo-500 to-blue-400",
+    glowColor: "99, 102, 241",
+    component: <Policy8 />,
+  },
+  {
+    title: "Withdrawal Policy",
+    desc: "Clear guidelines for secure, fast, and transparent withdrawal of funds from your account.",
+    icon: <FaMoneyBillWave />, // finance/withdrawal icon
+    color: "from-emerald-500 to-green-400",
+    glowColor: "16, 185, 129",
+    component: <Policy9 />,
+  },
 ]
+
+
 ,
     []
   );

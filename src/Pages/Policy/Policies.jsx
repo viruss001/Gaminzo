@@ -265,10 +265,10 @@ const PoliciesPage = ({ theme = "light" }) => {
   );
 
   return (
-    <section className={`relative w-full py-16 sm:py-20 px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`} id="top">
+    <section className={`relative w-full py-16 sm:py-20 mt-[-5rem] px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`} id="top ">
       <div className="max-w-7xl mx-auto text-center">
         <h2
-          className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${
+          className={`text-3xl sm:text-4xl md:text-5xl mt-5 font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${
             isDark ? "from-emerald-400 to-blue-400" : "from-blue-600 to-emerald-600"
           }`}
         >

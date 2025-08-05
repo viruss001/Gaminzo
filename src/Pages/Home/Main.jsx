@@ -11,6 +11,9 @@ import Features from "./Features";
 const Main = ({ theme }) => {
   return (
     <>
+    <div className="mt-7">
+
+    </div>
       <Banner theme={theme} />
       <Hero theme={theme} />
       <WhyChooseUs theme={theme} />

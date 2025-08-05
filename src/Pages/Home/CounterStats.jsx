@@ -77,7 +77,7 @@ export default function CounterStats({ theme = "light" }) {
         suffix: "K+", 
         label: "Active Users", 
         icon: FaUsers, 
-        gradient: "from-purple-500 to-pink-500", 
+        gradient: "from-green-500 to-green-800", 
         duration: 2.5,
         description: "Growing community daily"
       },

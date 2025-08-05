@@ -9,186 +9,164 @@ const Navbar = ({ theme, toggleTheme }) => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about-us" },
-    { name: "policy", path: "/policy" },
-    { name: "Points Table", path: "/points" },
+    { name: "Policy", path: "/policy" },
+    { name: "Points Table", path: "/pointtable" },
     { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <div className="sticky top-0 z-50">
+    <div className="sticky top-4 z-50 px-4">
+      {/* Full Gradient Border Wrapper */}
       <div
-        className={`relative ${
+        className={`p-[2px] rounded-2xl bg-gradient-to-r ${
           isDark
-            ? "bg-gray-900"
-            : "bg-white shadow-md border-b border-gray-200"
+            ? "from-purple-500 via-pink-500 to-red-500"
+            : "from-blue-500 via-pink-700 to-green-400"
         }`}
       >
-        {/* Animated underline */}
+        {/* Original Background */}
         <div
-          className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${
+          className={`rounded-2xl shadow-lg ${
             isDark
-              ? "from-purple-500 via-pink-500 to-red-500"
-              : "from-blue-500 via-pink-700 to-green-400"
-          } animate-pulse`}
-        />
-
-        {/* Navbar */}
-        <header
-          className={`${
-            isDark
-              ? "bg-gray-800/50 text-white"
-              : "bg-white/95 text-black"
+              ? "bg-gray-900"
+              : "bg-white shadow-md border-b border-gray-200"
           }`}
         >
-          <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 lg:px-8 h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img
-                src="/images/logo-removebg-preview (1).png" // Put your logo in public/images
-                alt="Logo"
-                className="h-14 w-auto object-contain"
-              />
-            </div>
-
-            {/* Desktop Links */}
-            <ul className="hidden md:flex space-x-8 font-medium text-lg">
-              {navLinks.map((item, i) => (
-                <li
-                  key={i}
-                  onClick={() => navigate(item.path)}
-                  className={`cursor-pointer transition-colors ${
-                    isDark ? "hover:text-green-400" : "hover:text-green-600"
-                  }`}
-                >
-                  {item.name}
-                </li>
-              ))}
-            </ul>
-
-            {/* Right Actions (Desktop) */}
-            <div className="hidden md:flex items-center space-x-4">
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
-                className={`p-2 rounded-full ${
-                  isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
-                } transition`}
-              >
-                {isDark ? (
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z" />
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z" />
-                  </svg>
-                )}
-              </button>
-
-              {/* Download Button */}
-              <div
-                className={`relative p-0.5 rounded-md bg-gradient-to-r ${
-                  isDark
-                    ? "from-purple-500 via-pink-500 to-red-500"
-                    : "from-red-500 via-amber-400 to-pink-500"
-                }`}
-              >
-                <button
-                  className={`px-5 py-1.5 rounded-[4px] font-medium text-white text-sm ${
-                    isDark
-                      ? "bg-gray-900 hover:bg-gray-800"
-                      : "bg-red-600 hover:bg-red-700"
-                  } transition`}
-                >
-                  DOWNLOAD
-                </button>
+          <header>
+            <nav className="max-w-4xl mx-auto flex items-center justify-between px-4 py-3 lg:px-6 h-16">
+              {/* Logo */}
+              <div className="flex items-center">
+                <img
+                  src="/images/logo-removebg-preview (1).png"
+                  alt="Logo"
+                  className="h-14 w-auto object-contain"
+                />
               </div>
-            </div>
 
-            {/* Mobile Menu Toggle */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                aria-label="Toggle menu"
-                className={`p-2 rounded-full transition ${
-                  isDark ? "hover:bg-green-700" : "hover:bg-green-100"
-                }`}
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  {mobileOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </nav>
-
-          {/* Mobile Dropdown */}
-          {mobileOpen && (
-            <div className="md:hidden px-4 pb-4">
-              <ul className="space-y-2 font-medium text-sm">
+              {/* Desktop Links */}
+              <ul className="hidden md:flex space-x-8 font-medium text-lg">
                 {navLinks.map((item, i) => (
                   <li
                     key={i}
-                    onClick={() => {
-                      navigate(item.path);
-                      setMobileOpen(false);
-                    }}
-                    className={`cursor-pointer transition-colors ${
-                      isDark ? "hover:text-red-400" : "hover:text-red-600"
+                    onClick={() => navigate(item.path)}
+                    className={`cursor-pointer ${
+                      isDark ? "hover:text-green-400" : "hover:text-green-600"
                     }`}
                   >
                     {item.name}
                   </li>
                 ))}
-                <li className="pt-3">
-                  <button
-                    onClick={toggleTheme}
-                    className={`p-2 rounded-full ${
-                      isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
-                    } transition`}
-                  >
-                    {isDark ? "🌙 Dark" : "☀️ Light"}
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className={`w-full mt-2 px-5 py-2 rounded-md text-white font-semibold ${
-                      isDark ? "bg-red-600" : "bg-red-500"
-                    }`}
-                  >
+              </ul>
+
+              {/* Right Actions */}
+              <div className="hidden md:flex items-center space-x-4">
+                {/* Theme Toggle */}
+                <button
+                  onClick={toggleTheme}
+                  className={`p-2 rounded-full transition ${
+                    isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
+                  }`}
+                >
+                  {isDark ? (
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121z" />
+                    </svg>
+                  )}
+                </button>
+
+                {/* Download Button */}
+                <div className="relative p-0.5 rounded-md bg-gradient-to-r from-pink-500 to-red-500">
+                  <button className="px-5 py-1.5 rounded-md font-medium text-white text-sm bg-black/30 hover:bg-black/50 transition">
                     DOWNLOAD
                   </button>
-                </li>
-              </ul>
-            </div>
-          )}
-        </header>
+                </div>
+              </div>
+
+              {/* Mobile Menu Toggle */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setMobileOpen(!mobileOpen)}
+                  aria-label="Toggle menu"
+                  className={`p-2 rounded-full transition ${
+                    isDark ? "hover:bg-green-700" : "hover:bg-green-100"
+                  }`}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    {mobileOpen ? (
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    ) : (
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    )}
+                  </svg>
+                </button>
+              </div>
+            </nav>
+
+            {/* Mobile Dropdown */}
+            {mobileOpen && (
+              <div className="md:hidden px-4 pb-4">
+                <ul className="space-y-2 font-medium text-sm">
+                  {navLinks.map((item, i) => (
+                    <li
+                      key={i}
+                      onClick={() => {
+                        navigate(item.path);
+                        setMobileOpen(false);
+                      }}
+                      className={`cursor-pointer ${
+                        isDark ? "hover:text-red-400" : "hover:text-red-600"
+                      }`}
+                    >
+                      {item.name}
+                    </li>
+                  ))}
+                  <li className="pt-3">
+                    <button
+                      onClick={toggleTheme}
+                      className={`p-2 rounded-full ${
+                        isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
+                      } transition`}
+                    >
+                      {isDark ? "🌙 Dark" : "☀️ Light"}
+                    </button>
+                  </li>
+                  <li>
+                    <button className="w-full mt-2 px-5 py-2 rounded-md text-white font-semibold bg-red-500">
+                      DOWNLOAD
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </header>
+        </div>
       </div>
     </div>
   );

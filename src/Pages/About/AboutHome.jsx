@@ -52,15 +52,7 @@ const WelcomeSection = ({theme}) => {
       </div>
 
       {/* Floating Button */}
-      <motion.a
-        href="tel:+911234567890"
-        className="fixed bottom-10 right-10 bg-green-500 text-white px-5 py-3 rounded-full shadow-lg hover:bg-green-600 transition z-1"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.4 }}
-      >
-        Call Now 📞
-      </motion.a>
+      
     </div>
       <WhoWeAre theme = {theme} />
       <OurCulture/>

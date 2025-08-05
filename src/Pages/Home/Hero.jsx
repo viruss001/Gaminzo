@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   FaTrophy,
   FaChartLine,
   FaCoins,
 } from "react-icons/fa";
-import { GiCricketBat } from "react-icons/gi"; // ✅ Added cricket icon
-import { motion } from "framer-motion";
+import { GiCricketBat } from "react-icons/gi";
+import { motion, useInView } from "framer-motion";
 
 const features = [
   {
-    icon: <GiCricketBat />,  // ✅ Replaced FaCricket
+    icon: <GiCricketBat />,
     title: "Cricket",
     color: "from-blue-500 to-emerald-400",
   },
@@ -30,7 +30,6 @@ const features = [
   },
 ];
 
-
 const iconFloatVariants = {
   float: {
     y: [0, -15, 0],
@@ -48,16 +47,34 @@ const iconFloatVariants = {
   },
 };
 
+// New fancy entrance animation
+const containerVariants = {
+  hidden: { opacity: 0, scale: 0.8, rotateX: -15, y: 50 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotateX: 0,
+    y: 0,
+    transition: { type: "spring", stiffness: 80, damping: 12, duration: 0.8 }
+  }
+};
+
 const Hero = ({ theme = "light" }) => {
   const isDark = theme === "dark";
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section
-      className={`relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-20 sm:py-28 overflow-hidden  ${
+    <motion.section
+      ref={ref}
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      className={`relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-20 sm:py-28 overflow-hidden ${
         isDark ? "bg-gray-900" : "bg-gray-50"
       }`}
     >
-      {/* Floating Background Particles */}
+      {/* Background Particles remain same */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {[...Array(15)].map((_, i) => {
           const size = Math.random() * 6 + 2;
@@ -65,7 +82,6 @@ const Hero = ({ theme = "light" }) => {
           const posY = Math.random() * 100;
           const delay = Math.random() * 2;
           const duration = 5 + Math.random() * 10;
-
           return (
             <motion.div
               key={i}
@@ -100,8 +116,8 @@ const Hero = ({ theme = "light" }) => {
         {/* Text Column */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
         >
           <span className="inline-block px-4 py-1.5 text-sm font-semibold bg-gradient-to-r from-[#1a418c] to-[#2a964a] text-white rounded-full shadow-md mb-4 ">
             🏆 Fantasy Cricket 2025
@@ -114,7 +130,11 @@ const Hero = ({ theme = "light" }) => {
           >
             Play Smart.
             <br />
-            <span className={`${isDark?"bg-[yellow]":"bg-gradient-to-r from-[#1a418c] to-[#2a964a]"} bg-clip-text text-transparent`}>
+            <span
+              className={`${
+                isDark ? "bg-[yellow]" : "bg-gradient-to-r from-[#1a418c] to-[#2a964a]"
+              } bg-clip-text text-transparent`}
+            >
               Win Big.
             </span>
           </h1>
@@ -160,25 +180,28 @@ const Hero = ({ theme = "light" }) => {
         </motion.div>
 
         {/* Feature Cards */}
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.6 + i * 0.15, type: "spring", stiffness: 100 }}
               whileHover="hover"
-              className="relative w-full group p-[2px] rounded-3xl smooth-perf "
+              className="relative w-full group p-[2px] rounded-3xl smooth-perf"
               style={{
-                background: `linear-gradient(45deg, ${isDark ? "#1a418c" : "#93c5fd"}, ${
-                  isDark ? "#2a964a" : "#6ee7b7"
-                })`,
+                background: `linear-gradient(45deg, ${
+                  isDark ? "#1a418c" : "#93c5fd"
+                }, ${isDark ? "#2a964a" : "#6ee7b7"})`,
               }}
             >
-              {/* Hover Glow */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300" />
 
-              {/* Inner Card */}
               <div
                 className={`relative z-10 rounded-3xl p-6 sm:p-8 h-full flex flex-col items-center text-center ${
                   isDark
@@ -190,18 +213,18 @@ const Hero = ({ theme = "light" }) => {
                   variants={iconFloatVariants}
                   animate="float"
                   whileHover="hover"
-                  className={`w-16 h-16 flex items-center smooth-perf justify-center rounded-full mb-5 bg-gradient-to-br ${feature.color} shadow-lg `}
+                  className={`w-16 h-16 flex items-center smooth-perf justify-center rounded-full mb-5 bg-gradient-to-br ${feature.color} shadow-lg`}
                 >
                   {React.cloneElement(feature.icon, {
                     className: "text-2xl text-white",
                   })}
                 </motion.div>
-                <h4 className={`font-semibold text-xl sm:text-2xl bg-clip-text text-transparent ${isDark ?"bg-white":"bg-black"}`}>
+                <h4 className={`font-semibold text-xl sm:text-2xl bg-clip-text text-transparent ${isDark ? "bg-white" : "bg-black"}`}>
                   {feature.title}
                 </h4>
 
                 <motion.div
-                  className={`absolute inset-0 rounded-3xl border-2  ${
+                  className={`absolute inset-0 rounded-3xl border-2 ${
                     isDark ? "border-emerald-400/30" : "border-blue-400/30"
                   }`}
                   animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -216,7 +239,7 @@ const Hero = ({ theme = "light" }) => {
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

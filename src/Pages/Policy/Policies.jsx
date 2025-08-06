@@ -9,6 +9,7 @@ import {
   FaBalanceScale,
   FaHandsHelping,
   FaMoneyBillWave,
+  FaSyncAlt
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";

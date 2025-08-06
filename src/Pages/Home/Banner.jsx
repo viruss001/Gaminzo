@@ -59,27 +59,32 @@ const Banner = () => {
           effect="fade"
           fadeEffect={{ crossFade: true }}
           loop={true}
-          speed={1500}  // smoother transition
+          speed={1500} // smoother transition
           className="w-full h-full"
         >
           {banners.map((banner) => (
             <SwiperSlide key={banner.id}>
               <div className="relative flex justify-center items-center bg-black overflow-hidden">
-                {/* Ken Burns (CSS based) */}
-                <div className="kenburns-container">
-                  <img
-                    src={banner.image}
-                    alt=""
-                    loading="lazy"
-                    className="kenburns-image"
-                  />
-                </div>
+                {/* Static image (Ken Burns removed) */}
+                <img
+                  src={banner.image}
+                  alt=""
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
 
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
 
                 {/* Caption Animation */}
-               
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={textVariants}
+                  className="absolute bottom-10 text-white text-3xl font-bold px-6"
+                >
+                  Your Caption Text
+                </motion.div>
               </div>
             </SwiperSlide>
           ))}

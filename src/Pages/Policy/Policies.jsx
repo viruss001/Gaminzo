@@ -186,17 +186,88 @@ const PoliciesPage = ({ theme = "light" }) => {
 
   const policiesData = useMemo(
     () => [
-      { title: "Privacy Policy", desc: "Learn how we collect, use, store, and protect your personal information on our platform.", icon: <FaShieldAlt />, color: "from-purple-500 to-indigo-400", glowColor: "168, 85, 247", component: <Policy4 /> },
-      { title: "Refund & Cancellation", desc: "Understand our fair and transparent process for handling refunds and cancellations.", icon: <FaUndo />, color: "from-pink-500 to-red-400", glowColor: "236, 72, 153", component: <Policy2 /> },
-      { title: "Terms & Conditions", desc: "Review the rules, responsibilities, and conditions for using our services.", icon: <FaFileContract />, color: "from-green-500 to-emerald-400", glowColor: "16, 185, 129", component: <Policy3 /> },
-      { title: "Responsible Gaming", desc: "Promoting safe, balanced, and responsible gaming practices for a healthy experience.", icon: <FaGamepad />, color: "from-yellow-400 to-orange-400", glowColor: "255, 193, 7", component: <Policy1 /> },
-      { title: "Intellectual Property Policy", desc: "Understand how intellectual property rights are protected and respected on our platform.", icon: <FaLightbulb />, color: "from-blue-500 to-cyan-400", glowColor: "59, 130, 246", component: <Policy5 /> },
-      { title: "KYC & AML (Anti-Money Laundering) Policy", desc: "Our compliance measures to verify customer identity and prevent money laundering activities.", icon: <FaIdCard />, color: "from-red-500 to-rose-400", glowColor: "239, 68, 68", component: <Policy6 /> },
-      { title: "Fair Play Policy", desc: "Ensuring fairness, transparency, and a cheat-free gaming experience for all players.", icon: <FaBalanceScale />, color: "from-teal-500 to-green-400", glowColor: "20, 184, 166", component: <Policy7 /> },
-      { title: "Grievance Redressal Policy", desc: "A structured process for addressing and resolving user concerns effectively and efficiently.", icon: <FaHandsHelping />, color: "from-indigo-500 to-blue-400", glowColor: "99, 102, 241", component: <Policy8 /> },
-      { title: "Withdrawal Policy", desc: "Clear guidelines for secure, fast, and transparent withdrawal of funds from your account.", icon: <FaMoneyBillWave />, color: "from-emerald-500 to-green-400", glowColor: "16, 185, 129", component: <Policy9 /> },
-      { title: "Updates & Amendments Policy", desc: "Clear guidelines for secure, fast, and transparent withdrawal of funds from your account.", icon: <FaMoneyBillWave />, color: "from-emerald-500 to-green-400", glowColor: "16, 185, 129", component: <Policy10 /> },
-    ],
+  { 
+    title: "Privacy Policy", 
+    desc: "Learn how we collect, use, store, and protect your personal information on our platform.", 
+    icon: <FaShieldAlt />, 
+    color: "from-purple-500 to-indigo-400", 
+    glowColor: "168, 85, 247", 
+    component: <Policy4 /> 
+  },
+  { 
+    title: "Refund & Cancellation", 
+    desc: "Understand our fair and transparent process for handling refunds and cancellations.", 
+    icon: <FaUndo />, 
+    color: "from-pink-500 to-red-400", 
+    glowColor: "236, 72, 153", 
+    component: <Policy2 /> 
+  },
+  { 
+    title: "Terms & Conditions", 
+    desc: "Review the rules, responsibilities, and conditions for using our services.", 
+    icon: <FaFileContract />, 
+    color: "from-green-500 to-emerald-400", 
+    glowColor: "16, 185, 129", 
+    component: <Policy3 /> 
+  },
+  { 
+    title: "Responsible Gaming", 
+    desc: "Promoting safe, balanced, and responsible gaming practices for a healthy experience.", 
+    icon: <FaGamepad />, 
+    color: "from-yellow-400 to-orange-400", 
+    glowColor: "255, 193, 7", 
+    component: <Policy1 /> 
+  },
+  { 
+    title: "Intellectual Property Policy", 
+    desc: "Understand how intellectual property rights are protected and respected on our platform.", 
+    icon: <FaLightbulb />, 
+    color: "from-blue-500 to-cyan-400", 
+    glowColor: "59, 130, 246", 
+    component: <Policy5 /> 
+  },
+  { 
+    title: "KYC & AML (Anti-Money Laundering) Policy", 
+    desc: "Our compliance measures to verify customer identity and prevent money laundering activities.", 
+    icon: <FaIdCard />, 
+    color: "from-red-500 to-rose-400", 
+    glowColor: "239, 68, 68", 
+    component: <Policy6 /> 
+  },
+  { 
+    title: "Fair Play Policy", 
+    desc: "Ensuring fairness, transparency, and a cheat-free gaming experience for all players.", 
+    icon: <FaBalanceScale />, 
+    color: "from-teal-500 to-green-400", 
+    glowColor: "20, 184, 166", 
+    component: <Policy7 /> 
+  },
+  { 
+    title: "Grievance Redressal Policy", 
+    desc: "A structured process for addressing and resolving user concerns effectively and efficiently.", 
+    icon: <FaHandsHelping />, 
+    color: "from-indigo-500 to-blue-400", 
+    glowColor: "99, 102, 241", 
+    component: <Policy8 /> 
+  },
+  { 
+    title: "Withdrawal Policy", 
+    desc: "Clear guidelines for secure, fast, and transparent withdrawal of funds from your account.", 
+    icon: <FaMoneyBillWave />, 
+    color: "from-emerald-500 to-green-400", 
+    glowColor: "16, 185, 129", 
+    component: <Policy9 /> 
+  },
+  { 
+    title: "Updates & Amendments Policy", 
+    desc: "Stay informed about how and when we make changes to our policies and terms of service.", 
+    icon: <FaSyncAlt />,   // <-- changed icon
+    color: "from-emerald-500 to-green-400", 
+    glowColor: "16, 185, 129", 
+    component: <Policy10 /> 
+  }
+]
+,
     []
   );
 

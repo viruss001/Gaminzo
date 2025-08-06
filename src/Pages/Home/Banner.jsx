@@ -13,8 +13,12 @@ const banners = [
 ];
 
 const textVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.2, ease: "easeOut" },
+  },
 };
 
 const Banner = () => {
@@ -24,92 +28,63 @@ const Banner = () => {
     if (!swiperRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          swiperRef.current.autoplay.start();
-        } else {
-          swiperRef.current.autoplay.stop();
-        }
+        if (entry.isIntersecting) swiperRef.current.autoplay.resume();
+        else swiperRef.current.autoplay.pause();
       },
       { threshold: 0.2 }
     );
-
     const element = document.querySelector(".banner-section");
     if (element) observer.observe(element);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="w-full relative banner-section rounded-2xl shadow-xl overflow-hidden">
-      <Swiper
-        modules={[Autoplay, Pagination, EffectFade]}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-          bulletClass:
-            "swiper-pagination-bullet !bg-white/40 !h-2.5 !w-6 !rounded-full transition-all duration-300",
-          bulletActiveClass: "!bg-white !w-8",
-        }}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        loop={true}
-        speed={1000}
-        className="w-full h-full"
-      >
-        {banners.map((banner) => (
-          <SwiperSlide key={banner.id}>
-            <div className="relative flex justify-center items-center bg-black overflow-hidden">
-              {/* Ken Burns Effect */}
-              <motion.img
-                src={banner.image}
-                alt=""
-                loading="lazy"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 4, ease: "easeOut" }}
-                className="w-full max-h-[500px] object-cover"
-              />
+    <div
+      className="w-full relative banner-section p-[2px] rounded-2xl
+                 bg-gradient-to-r from-blue-500 via-emerald-400 to-purple-500
+                 shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_40px_rgba(34,197,94,0.6)]
+                 transition-all duration-500"
+    >
+      <div className="relative rounded-2xl overflow-hidden">
+        <Swiper
+          modules={[Autoplay, Pagination, EffectFade]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          pagination={{
+            clickable: true,
+            bulletClass:
+              "swiper-pagination-bullet !bg-white/40 !h-2.5 !w-6 !rounded-full transition-all duration-500",
+            bulletActiveClass: "!bg-white !w-8",
+          }}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          loop={true}
+          speed={1500}  // smoother transition
+          className="w-full h-full"
+        >
+          {banners.map((banner) => (
+            <SwiperSlide key={banner.id}>
+              <div className="relative flex justify-center items-center bg-black overflow-hidden">
+                {/* Ken Burns (CSS based) */}
+                <div className="kenburns-container">
+                  <img
+                    src={banner.image}
+                    alt=""
+                    loading="lazy"
+                    className="kenburns-image"
+                  />
+                </div>
 
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
 
-              {/* Caption Animation */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-                <motion.h2
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={textVariants}
-                  className="text-2xl md:text-4xl font-bold drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
-                >
-                  Modern Banner Title
-                </motion.h2>
-                <motion.p
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={textVariants}
-                  transition={{ delay: 0.3 }}
-                  className="mt-2 text-sm md:text-lg opacity-90"
-                >
-                  Add some description or call to action
-                </motion.p>
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-4 px-6 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold transition-all"
-                >
-                  Learn More
-                </motion.button>
+                {/* Caption Animation */}
+               
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

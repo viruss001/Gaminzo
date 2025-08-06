@@ -3,7 +3,6 @@ import { FaBolt, FaRobot, FaGlobe, FaLock, FaStar, FaTrophy } from "react-icons/
 import { motion, useAnimation } from "framer-motion";
 import { gsap } from "gsap";
 
-// Enhanced constants
 const DEFAULT_PARTICLE_COUNT = 20;
 const MOBILE_BREAKPOINT = 768;
 
@@ -14,7 +13,7 @@ const featuresData = [
     icon: <FaBolt />,
     color: "from-yellow-400 to-emerald-400",
     glowColor: "255, 193, 7",
-    secondaryIcon: <FaTrophy className="absolute opacity-20" style={{ fontSize: '4rem' }} />
+    secondaryIcon: <FaTrophy className="absolute opacity-20" style={{ fontSize: "4rem" }} />,
   },
   {
     title: "AI Draft Assistant",
@@ -22,7 +21,7 @@ const featuresData = [
     icon: <FaRobot />,
     color: "from-pink-500 to-emerald-400",
     glowColor: "236, 72, 153",
-    secondaryIcon: <FaStar className="absolute opacity-20" style={{ fontSize: '4rem' }} />
+    secondaryIcon: <FaStar className="absolute opacity-20" style={{ fontSize: "4rem" }} />,
   },
   {
     title: "Fair Play Certified",
@@ -30,7 +29,7 @@ const featuresData = [
     icon: <FaLock />,
     color: "from-blue-500 to-emerald-400",
     glowColor: "59, 130, 246",
-    secondaryIcon: <FaGlobe className="absolute opacity-20" style={{ fontSize: '4rem' }} />
+    secondaryIcon: <FaGlobe className="absolute opacity-20" style={{ fontSize: "4rem" }} />,
   },
   {
     title: "Global Tournaments",
@@ -38,30 +37,29 @@ const featuresData = [
     icon: <FaGlobe />,
     color: "from-green-500 to-blue-400",
     glowColor: "16, 185, 129",
-    secondaryIcon: <FaBolt className="absolute opacity-20" style={{ fontSize: '4rem' }} />
+    secondaryIcon: <FaBolt className="absolute opacity-20" style={{ fontSize: "4rem" }} />,
   },
 ];
 
-// Enhanced animation variants
 const iconFloatVariants = {
-  float: { 
-    y: [0, -15, 0], 
-    rotate: [0, 5, -5, 0], 
+  float: {
+    y: [0, -15, 0],
+    rotate: [0, 5, -5, 0],
     scale: [1, 1.1, 1],
-    transition: { 
-      duration: 6, 
-      repeat: Infinity, 
-      ease: "easeInOut" 
-    } 
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
   },
-  hover: { 
-    scale: 1.3, 
+  hover: {
+    scale: 1.3,
     rotate: [0, 15, -15, 0],
-    transition: { 
+    transition: {
       duration: 0.8,
       repeat: Infinity,
-      repeatType: "reverse"
-    } 
+      repeatType: "reverse",
+    },
   },
 };
 
@@ -71,9 +69,9 @@ const cardHoverVariants = {
     boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
     transition: {
       duration: 0.3,
-      ease: "easeOut"
-    }
-  }
+      ease: "easeOut",
+    },
+  },
 };
 
 const ParticleCard = ({
@@ -136,14 +134,14 @@ const ParticleCard = ({
       gsap.fromTo(
         clone,
         { scale: 0, opacity: 0 },
-        { 
+        {
           scale: [0, 1.2, 1],
           opacity: [0, 1, 0.8],
-          duration: 0.6, 
-          ease: "elastic.out(1, 0.5)" 
+          duration: 0.6,
+          ease: "elastic.out(1, 0.5)",
         }
       );
-      
+
       gsap.to(clone, {
         x: (Math.random() - 0.5) * 120,
         y: (Math.random() - 0.5) * 120,
@@ -153,7 +151,7 @@ const ParticleCard = ({
         repeat: -1,
         yoyo: true,
       });
-      
+
       gsap.to(clone, {
         opacity: [0.8, 0.3],
         duration: 2.5,
@@ -190,11 +188,11 @@ const ParticleCard = ({
       controls.start("hover");
       animateParticles();
       if (enableTilt) {
-        gsap.to(element, { 
-          rotateX: 5, 
-          rotateY: 5, 
-          duration: 0.5, 
-          ease: "elastic.out(1, 0.5)" 
+        gsap.to(element, {
+          rotateX: 5,
+          rotateY: 5,
+          duration: 0.5,
+          ease: "elastic.out(1, 0.5)",
         });
       }
     };
@@ -204,19 +202,19 @@ const ParticleCard = ({
       controls.start("rest");
       clearAllParticles();
       if (enableTilt) {
-        gsap.to(element, { 
-          rotateX: 0, 
-          rotateY: 0, 
+        gsap.to(element, {
+          rotateX: 0,
+          rotateY: 0,
           duration: 0.5,
-          ease: "back.out(1.7)" 
+          ease: "back.out(1.7)",
         });
       }
       if (enableMagnetism) {
-        gsap.to(element, { 
-          x: 0, 
-          y: 0, 
+        gsap.to(element, {
+          x: 0,
+          y: 0,
           duration: 0.5,
-          ease: "elastic.out(1, 0.5)" 
+          ease: "elastic.out(1, 0.5)",
         });
       }
     };
@@ -232,21 +230,21 @@ const ParticleCard = ({
       if (enableTilt) {
         const rotateX = ((y - centerY) / centerY) * -15;
         const rotateY = ((x - centerX) / centerX) * 15;
-        gsap.to(element, { 
-          rotateX, 
-          rotateY, 
-          duration: 0.2, 
-          ease: "power2.out" 
+        gsap.to(element, {
+          rotateX,
+          rotateY,
+          duration: 0.2,
+          ease: "power2.out",
         });
       }
       if (enableMagnetism) {
         const magnetX = (x - centerX) * 0.1;
         const magnetY = (y - centerY) * 0.1;
-        magnetismAnimationRef.current = gsap.to(element, { 
-          x: magnetX, 
-          y: magnetY, 
+        magnetismAnimationRef.current = gsap.to(element, {
+          x: magnetX,
+          y: magnetY,
           duration: 0.5,
-          ease: "elastic.out(1, 0.5)" 
+          ease: "elastic.out(1, 0.5)",
         });
       }
     };
@@ -258,7 +256,7 @@ const ParticleCard = ({
         duration: 0.1,
         yoyo: true,
         repeat: 1,
-        ease: "power2.inOut"
+        ease: "power2.inOut",
       });
     };
 
@@ -275,7 +273,7 @@ const ParticleCard = ({
       element.removeEventListener("click", handleClick);
       clearAllParticles();
     };
-  }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor, controls]);
+  }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, controls]);
 
   return (
     <motion.div
@@ -306,7 +304,6 @@ const WhyChooseUs = ({ theme = "light" }) => {
   const isMobile = useMobileDetection();
   const features = useMemo(() => featuresData, []);
 
-  // Background animation
   const bgControls = useAnimation();
   useEffect(() => {
     bgControls.start({
@@ -316,18 +313,14 @@ const WhyChooseUs = ({ theme = "light" }) => {
         duration: 30,
         repeat: Infinity,
         repeatType: "reverse",
-        ease: "linear"
-      }
+        ease: "linear",
+      },
     });
   }, [bgControls]);
 
   return (
     <section className={`relative w-full py-16 sm:py-24 px-4 overflow-hidden ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
-      {/* Animated background elements */}
-      <motion.div 
-        className="absolute inset-0 overflow-hidden"
-        animate={bgControls}
-      >
+      <motion.div className="absolute inset-0 overflow-hidden" animate={bgControls}>
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           {[...Array(8)].map((_, i) => (
             <motion.div
@@ -339,7 +332,7 @@ const WhyChooseUs = ({ theme = "light" }) => {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 opacity: 0.1 + Math.random() * 0.2,
-                filter: "blur(40px)"
+                filter: "blur(40px)",
               }}
               animate={{
                 x: [0, (Math.random() - 0.5) * 200],
@@ -348,8 +341,8 @@ const WhyChooseUs = ({ theme = "light" }) => {
                   duration: 20 + Math.random() * 20,
                   repeat: Infinity,
                   repeatType: "reverse",
-                  ease: "easeInOut"
-                }
+                  ease: "easeInOut",
+                },
               }}
             />
           ))}
@@ -365,7 +358,7 @@ const WhyChooseUs = ({ theme = "light" }) => {
         >
           Why Choose Us
         </motion.h2>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -377,12 +370,7 @@ const WhyChooseUs = ({ theme = "light" }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 * idx }}
-            >
+            <motion.div key={idx} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 * idx }}>
               <ParticleCard
                 className="relative w-full h-full rounded-3xl p-[2px] feature-card--border-glow"
                 style={{
@@ -414,30 +402,22 @@ const WhyChooseUs = ({ theme = "light" }) => {
                   >
                     {React.cloneElement(feature.icon, { className: "text-2xl text-white" })}
                   </motion.div>
-                  <motion.h3 
-                    className="font-bold text-xl tracking-wide mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400"
-                    whileHover={{ scale: 1.05 }}
-                  >
+                  <motion.h3 className="font-bold text-xl tracking-wide mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400" whileHover={{ scale: 1.05 }}>
                     {feature.title}
                   </motion.h3>
-                  <motion.p 
-                    className={`text-base ${isDark ? "text-gray-300" : "text-gray-600"} mb-4`}
-                    whileHover={{ scale: 1.02 }}
-                  >
+                  <motion.p className={`text-base ${isDark ? "text-gray-300" : "text-gray-600"} mb-4`} whileHover={{ scale: 1.02 }}>
                     {feature.desc}
                   </motion.p>
                   <motion.div
-                    className={`absolute inset-0 rounded-3xl border-2 ${
-                      isDark ? "border-emerald-400/30" : "border-blue-400/30"
-                    }`}
-                    animate={{ 
+                    className={`absolute inset-0 rounded-3xl border-2 ${isDark ? "border-emerald-400/30" : "border-blue-400/30"}`}
+                    animate={{
                       opacity: [0.3, 0.6, 0.3],
-                      borderWidth: [2, 3, 2]
+                      borderWidth: [2, 3, 2],
                     }}
-                    transition={{ 
-                      duration: 4 + idx, 
-                      repeat: Infinity, 
-                      ease: "easeInOut" 
+                    transition={{
+                      duration: 4 + idx,
+                      repeat: Infinity,
+                      ease: "easeInOut",
                     }}
                   />
                 </div>

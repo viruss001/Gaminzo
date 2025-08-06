@@ -21,6 +21,7 @@ import Policy6 from "./Policy6";
 import Policy7 from "./Policy7";
 import Policy8 from "./Policy8";
 import Policy9 from "./Policy9";
+import Policy10 from './policy10';
 
 // --- constants ---
 const DEFAULT_PARTICLE_COUNT = 12;
@@ -185,141 +186,84 @@ const PoliciesPage = ({ theme = "light" }) => {
 
   const policiesData = useMemo(
     () => [
-  {
-    title: "Privacy Policy",
-    desc: "Learn how we collect, use, store, and protect your personal information on our platform.",
-    icon: <FaShieldAlt />, // security & privacy icon
-    color: "from-purple-500 to-indigo-400",
-    glowColor: "168, 85, 247",
-    component: <Policy4 />,
-  },
-  {
-    title: "Refund & Cancellation",
-    desc: "Understand our fair and transparent process for handling refunds and cancellations.",
-    icon: <FaUndo />, // refund/cancellation symbol
-    color: "from-pink-500 to-red-400",
-    glowColor: "236, 72, 153",
-    component: <Policy2 />,
-  },
-  {
-    title: "Terms & Conditions",
-    desc: "Review the rules, responsibilities, and conditions for using our services.",
-    icon: <FaFileContract />, // legal documents icon
-    color: "from-green-500 to-emerald-400",
-    glowColor: "16, 185, 129",
-    component: <Policy3 />,
-  },
-  {
-    title: "Responsible Gaming",
-    desc: "Promoting safe, balanced, and responsible gaming practices for a healthy experience.",
-    icon: <FaGamepad />, // gaming icon
-    color: "from-yellow-400 to-orange-400",
-    glowColor: "255, 193, 7",
-    component: <Policy1 />,
-  },
-  {
-    title: "Intellectual Property Policy",
-    desc: "Understand how intellectual property rights are protected and respected on our platform.",
-    icon: <FaLightbulb />, // innovation & IP
-    color: "from-blue-500 to-cyan-400",
-    glowColor: "59, 130, 246",
-    component: <Policy5 />,
-  },
-  {
-    title: "KYC & AML (Anti-Money Laundering) Policy",
-    desc: "Our compliance measures to verify customer identity and prevent money laundering activities.",
-    icon: <FaIdCard />, // identity verification icon
-    color: "from-red-500 to-rose-400",
-    glowColor: "239, 68, 68",
-    component: <Policy6 />,
-  },
-  {
-    title: "Fair Play Policy",
-    desc: "Ensuring fairness, transparency, and a cheat-free gaming experience for all players.",
-    icon: <FaBalanceScale />, // fairness & justice icon
-    color: "from-teal-500 to-green-400",
-    glowColor: "20, 184, 166",
-    component: <Policy7 />,
-  },
-  {
-    title: "Grievance Redressal Policy",
-    desc: "A structured process for addressing and resolving user concerns effectively and efficiently.",
-    icon: <FaHandsHelping />, // assistance/support icon
-    color: "from-indigo-500 to-blue-400",
-    glowColor: "99, 102, 241",
-    component: <Policy8 />,
-  },
-  {
-    title: "Withdrawal Policy",
-    desc: "Clear guidelines for secure, fast, and transparent withdrawal of funds from your account.",
-    icon: <FaMoneyBillWave />, // finance/withdrawal icon
-    color: "from-emerald-500 to-green-400",
-    glowColor: "16, 185, 129",
-    component: <Policy9 />,
-  },
-]
-
-
-,
+      { title: "Privacy Policy", desc: "Learn how we collect, use, store, and protect your personal information on our platform.", icon: <FaShieldAlt />, color: "from-purple-500 to-indigo-400", glowColor: "168, 85, 247", component: <Policy4 /> },
+      { title: "Refund & Cancellation", desc: "Understand our fair and transparent process for handling refunds and cancellations.", icon: <FaUndo />, color: "from-pink-500 to-red-400", glowColor: "236, 72, 153", component: <Policy2 /> },
+      { title: "Terms & Conditions", desc: "Review the rules, responsibilities, and conditions for using our services.", icon: <FaFileContract />, color: "from-green-500 to-emerald-400", glowColor: "16, 185, 129", component: <Policy3 /> },
+      { title: "Responsible Gaming", desc: "Promoting safe, balanced, and responsible gaming practices for a healthy experience.", icon: <FaGamepad />, color: "from-yellow-400 to-orange-400", glowColor: "255, 193, 7", component: <Policy1 /> },
+      { title: "Intellectual Property Policy", desc: "Understand how intellectual property rights are protected and respected on our platform.", icon: <FaLightbulb />, color: "from-blue-500 to-cyan-400", glowColor: "59, 130, 246", component: <Policy5 /> },
+      { title: "KYC & AML (Anti-Money Laundering) Policy", desc: "Our compliance measures to verify customer identity and prevent money laundering activities.", icon: <FaIdCard />, color: "from-red-500 to-rose-400", glowColor: "239, 68, 68", component: <Policy6 /> },
+      { title: "Fair Play Policy", desc: "Ensuring fairness, transparency, and a cheat-free gaming experience for all players.", icon: <FaBalanceScale />, color: "from-teal-500 to-green-400", glowColor: "20, 184, 166", component: <Policy7 /> },
+      { title: "Grievance Redressal Policy", desc: "A structured process for addressing and resolving user concerns effectively and efficiently.", icon: <FaHandsHelping />, color: "from-indigo-500 to-blue-400", glowColor: "99, 102, 241", component: <Policy8 /> },
+      { title: "Withdrawal Policy", desc: "Clear guidelines for secure, fast, and transparent withdrawal of funds from your account.", icon: <FaMoneyBillWave />, color: "from-emerald-500 to-green-400", glowColor: "16, 185, 129", component: <Policy9 /> },
+      { title: "Updates & Amendments Policy", desc: "Clear guidelines for secure, fast, and transparent withdrawal of funds from your account.", icon: <FaMoneyBillWave />, color: "from-emerald-500 to-green-400", glowColor: "16, 185, 129", component: <Policy10 /> },
+    ],
     []
   );
 
+  // ---- Split items so last row with 2 items is centered
+  const fullRows = Math.floor(policiesData.length / 4) * 4;
+  const lastRowItems = policiesData.slice(fullRows);
+
   return (
-    <section className={`relative w-full py-16 sm:py-20 mt-[-5rem] px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`} id="top ">
+    <section className={`relative w-full py-16 sm:py-20 mt-[-5rem] px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`} id="top">
       <div className="max-w-7xl mx-auto text-center">
-        <h2
-          className={`text-3xl sm:text-4xl md:text-5xl mt-5 font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${
-            isDark ? "from-emerald-400 to-blue-400" : "from-blue-600 to-emerald-600"
-          }`}
-        >
+        <h2 className={`text-3xl sm:text-4xl md:text-5xl mt-5 font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${isDark ? "from-emerald-400 to-blue-400" : "from-blue-600 to-emerald-600"}`}>
           Our Policies
         </h2>
         <p className={`mt-4 text-base sm:text-lg ${isDark ? "text-gray-300" : "text-gray-700"} max-w-xl mx-auto`}>
           Understand our policies that keep your experience safe, fair, and transparent.
         </p>
 
+        {/* Full rows */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mt-12 sm:mt-16 place-items-center">
-          {policiesData.map((policy, idx) => (
+          {policiesData.slice(0, fullRows).map((policy, idx) => (
             <ParticleCard
               key={idx}
               onClick={() => handleCardClick(policy)}
               className="relative w-full max-w-[18rem] aspect-square rounded-3xl p-[2px]"
-              style={{
-                "--glow-x": "50%",
-                "--glow-y": "50%",
-                "--glow-intensity": "0",
-                "--glow-radius": "200px",
-                "--glow-color": policy.glowColor,
-              }}
               particleCount={8}
               glowColor={policy.glowColor}
               enableTilt={!isMobile}
               enableMagnetism={!isMobile}
             >
-              <div
-                className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 py-6 ${
-                  isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"
-                }`}
-              >
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-br ${policy.color}`}
-                >
+              <div className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 py-6 ${isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"}`}>
+                <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-br ${policy.color}`}>
                   {React.cloneElement(policy.icon, { className: "text-2xl text-white" })}
                 </motion.div>
-                <h3 className="font-bold text-lg sm:text-xl tracking-wide mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-                  {policy.title}
-                </h3>
+                <h3 className="font-bold text-lg sm:text-xl tracking-wide mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">{policy.title}</h3>
                 <p className={`text-sm sm:text-base ${isDark ? "text-gray-300" : "text-gray-600"}`}>{policy.desc}</p>
               </div>
             </ParticleCard>
           ))}
         </div>
-<div id="seehere">
 
-</div>
-        <div className="mt-12" >
+        {/* Last row with center alignment if less than 4 */}
+        {lastRowItems.length > 0 && (
+          <div className="flex justify-center gap-8 sm:gap-12 mt-12">
+            {lastRowItems.map((policy, idx) => (
+              <ParticleCard
+                key={idx}
+                onClick={() => handleCardClick(policy)}
+                className="relative w-full max-w-[18rem] aspect-square rounded-3xl p-[2px]"
+                particleCount={8}
+                glowColor={policy.glowColor}
+                enableTilt={!isMobile}
+                enableMagnetism={!isMobile}
+              >
+                <div className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 py-6 ${isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"}`}>
+                  <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-br ${policy.color}`}>
+                    {React.cloneElement(policy.icon, { className: "text-2xl text-white" })}
+                  </motion.div>
+                  <h3 className="font-bold text-lg sm:text-xl tracking-wide mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">{policy.title}</h3>
+                  <p className={`text-sm sm:text-base ${isDark ? "text-gray-300" : "text-gray-600"}`}>{policy.desc}</p>
+                </div>
+              </ParticleCard>
+            ))}
+          </div>
+        )}
+
+        <div id="seehere"></div>
+        <div className="mt-12">
           {selectedPolicy ? (
             <div className={`rounded-lg ${isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}>
               {selectedPolicy.component}

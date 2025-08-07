@@ -14,7 +14,7 @@ const Footer = ({ theme }) => {
 
   return (
     <footer
-      className={`relative pt-16 pb-8 px-4 mt border-t ${
+      className={`relative pt-16 pb-8 px-4 mt border-t transition-800${
         isDark
           ? "bg-gray-900/95 text-white border-gray-800"
           : "bg-white/95 text-black border-gray-200"

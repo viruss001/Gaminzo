@@ -22,9 +22,7 @@ const ContactForm = ({ theme = 'light' }) => {
 
   return (
     <section
-      className={`relative w-full py-20 px-4 min-h-screen flex items-center justify-center ${
-        isDark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
-      }`}
+      className={`relative w-full py-20 px-4 min-h-screen flex items-center justify-center transition-800`}
     >
       {/* Background Gradient Blobs */}
       <motion.div
@@ -69,7 +67,7 @@ const ContactForm = ({ theme = 'light' }) => {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"
         >
           {/* Contact Information */}
-          <motion.div variants={itemVariants} className="space-y-8">
+          <motion.div variants={itemVariants} className="space-y-8 transition-800">
             <h3 className="text-3xl font-bold">Our Information</h3>
             <div className="space-y-6">
               {[
@@ -81,12 +79,12 @@ const ContactForm = ({ theme = 'light' }) => {
                   key={i}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: 'spring', stiffness: 200 }}
-                  className="flex items-center gap-4 group"
+                  className="flex items-center gap-4 group transition-800"
                 >
                   <motion.div
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className={`p-4 rounded-full ${
+                    className={`p-4 rounded-full transition-800 ${
                       isDark ? 'bg-gray-800 text-blue-400' : 'bg-blue-100 text-blue-600'
                     }`}
                   >
@@ -104,7 +102,7 @@ const ContactForm = ({ theme = 'light' }) => {
           {/* Contact Form */}
           <motion.div
             variants={itemVariants}
-            className={`p-8 rounded-2xl backdrop-blur-lg border ${
+            className={`p-8 rounded-2xl backdrop-blur-lg border transition-800 ${
               isDark
                 ? 'bg-gray-800/60 border-gray-700'
                 : 'bg-white/80 border-gray-200 shadow-lg'
@@ -119,7 +117,7 @@ const ContactForm = ({ theme = 'light' }) => {
                     id={field}
                     name={field}
                     placeholder=" "
-                    className={`peer w-full px-4 pt-5 pb-2 rounded-lg border outline-none transition ${
+                    className={`peer w-full px-4 pt-5 pb-2 rounded-lg border outline-none  transition-800 ${
                       isDark
                         ? 'bg-gray-700 border-gray-600 text-white placeholder-transparent'
                         : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-transparent'
@@ -128,7 +126,7 @@ const ContactForm = ({ theme = 'light' }) => {
                   />
                   <label
                     htmlFor={field}
-                    className={`absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm ${
+                    className={`absolute transition-800 left-4 top-2 text-sm transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm ${
                       isDark
                         ? 'text-gray-400 peer-placeholder-shown:text-gray-500 peer-focus:text-blue-400'
                         : 'text-gray-500 peer-placeholder-shown:text-gray-400 peer-focus:text-blue-500'
@@ -145,16 +143,16 @@ const ContactForm = ({ theme = 'light' }) => {
                   name="message"
                   rows="5"
                   placeholder=" "
-                  className={`peer w-full px-4 pt-5 pb-2 rounded-lg border outline-none transition ${
+                  className={`peer w-full px-4 pt-5 pb-2 rounded-lg border outline-none transition-800 ${
                     isDark
-                      ? 'bg-gray-700 border-gray-600 text-white placeholder-transparent'
+                      ? 'bg-gray-700 border-gray-600 text-white placeholder-transparent '
                       : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-transparent'
                   } focus:ring-2 focus:ring-blue-400`}
                   required
                 ></textarea>
                 <label
                   htmlFor="message"
-                  className={`absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm ${
+                  className={`absolute transition-800 left-4 top-2 text-sm transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm ${
                     isDark
                       ? 'text-gray-400 peer-placeholder-shown:text-gray-500 peer-focus:text-blue-400'
                       : 'text-gray-500 peer-placeholder-shown:text-gray-400 peer-focus:text-blue-500'
@@ -168,7 +166,7 @@ const ContactForm = ({ theme = 'light' }) => {
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-semibold transition text-white bg-gradient-to-r from-blue-500 to-emerald-500 shadow-md hover:shadow-xl"
+                className="w-full flex items-center transition-800 justify-center gap-2 py-3 px-6 rounded-lg font-semibold transition text-white bg-gradient-to-r from-blue-500 to-emerald-500 shadow-md hover:shadow-xl"
               >
                 <FaPaperPlane />
                 Send Message

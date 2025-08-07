@@ -15,7 +15,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   ];
 
   return (
-    <div className="sticky top-4 z-50 px-4">
+    <div className="sticky top-4 z-50 px-4 ">
       {/* Full Gradient Border Wrapper */}
       <div
         className={`p-[2px] rounded-2xl bg-gradient-to-r ${
@@ -26,10 +26,10 @@ const Navbar = ({ theme, toggleTheme }) => {
       >
         {/* Original Background */}
         <div
-          className={`rounded-2xl shadow-lg ${
+          className={`rounded-2xl shadow-lg duration-800 ${
             isDark
-              ? "bg-gray-900"
-              : "bg-white shadow-md border-b border-gray-200"
+              ? "bg-gray-900  "
+              : "bg-white "
           }`}
         >
           <header>

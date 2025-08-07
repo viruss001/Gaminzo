@@ -107,7 +107,7 @@ const VideoCarousel = ({ theme = "dark" }) => {
   }, [swiperInstance]);
 
   return (
-    <div className={`w-full flex flex-col items-center py-20 px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <div className={`w-full flex flex-col items-center py-20 px-4 `}>
       <div className="relative max-w-7xl w-full">
         <Swiper
           modules={[Navigation, EffectCoverflow]}

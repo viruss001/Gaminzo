@@ -128,16 +128,14 @@ const PointTable = ({ theme = "light" }) => {
 
   return (
     <section
-      className={`relative w-full min-h-screen flex flex-col items-center py-20 px-4 overflow-hidden ${
-        isDark ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
-      }`}
+      className={`relative w-full min-h-screen flex flex-col items-center py-20 px-4 overflow-hidden transition-800`}
     >
       {/* Animated background elements */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.2 }}
         transition={{ duration: 15, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-        className={`absolute top-0 left-0 w-full h-full ${
+        className={`absolute top-0 left-0 w-full h-full transition-800 ${
           isDark ? "bg-grid-dark" : "bg-grid-light"
         }`}
       />
@@ -167,7 +165,7 @@ const PointTable = ({ theme = "light" }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-emerald-500">
+          <h2 className="text-5xl font-extrabold mb-4 transition-800 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-emerald-500">
             League Standings
           </h2>
           <p className={`text-lg ${isDark ? "text-gray-300" : "text-gray-600"}`}>
@@ -180,7 +178,7 @@ const PointTable = ({ theme = "light" }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className={`mb-6 p-4 rounded-xl ${
+          className={`mb-6 p-4 rounded-xl transition-800 ${
             isDark ? "bg-gray-800" : "bg-white shadow-md"
           }`}
         >
@@ -192,7 +190,7 @@ const PointTable = ({ theme = "light" }) => {
                 placeholder="Search teams..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className={`w-full pl-10 pr-4 py-2 rounded-lg ${
+                className={`w-full pl-10 pr-4 py-2 transition-800 rounded-lg ${
                   isDark
                     ? "bg-gray-700 text-white placeholder-gray-400"
                     : "bg-gray-100 text-gray-900 placeholder-gray-500"
@@ -201,7 +199,7 @@ const PointTable = ({ theme = "light" }) => {
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              className={`flex items-center gap-2 px-4 transition-800 py-2 rounded-lg transition-colors ${
                 isDark
                   ? "bg-purple-600 hover:bg-purple-700"
                   : "bg-blue-500 hover:bg-blue-600 text-white"
@@ -219,7 +217,7 @@ const PointTable = ({ theme = "light" }) => {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="overflow-hidden mt-4"
+                className="overflow-hidden mt-4 transition-800"
               >
                 <div className={`p-4 rounded-lg ${
                   isDark ? "bg-gray-700" : "bg-gray-100"
@@ -233,7 +231,7 @@ const PointTable = ({ theme = "light" }) => {
                         max="20"
                         value={filters.minPoints}
                         onChange={(e) => setFilters({...filters, minPoints: parseInt(e.target.value) || 0})}
-                        className={`w-full px-3 py-2 rounded-lg ${
+                        className={`w-full px-3 py-2 rounded-lg transition-800 ${
                           isDark ? "bg-gray-600" : "bg-white"
                         }`}
                       />
@@ -290,28 +288,28 @@ const PointTable = ({ theme = "light" }) => {
             isDark ? "text-gray-300" : "text-gray-700"
           }`}
         >
-          <div className={`p-4 rounded-xl text-center ${
+          <div className={`p-4 rounded-xl transition-800 text-center ${
             isDark ? "bg-gray-800" : "bg-white shadow-sm"
           }`}>
             <div className="text-2xl font-bold text-blue-500">5</div>
             <div>Teams</div>
           </div>
-          <div className={`p-4 rounded-xl text-center ${
+          <div className={`p-4 rounded-xl transition-800 text-center ${
             isDark ? "bg-gray-800" : "bg-white shadow-sm"
           }`}>
             <div className="text-2xl font-bold text-emerald-500">50</div>
             <div>Matches Played</div>
           </div>
-          <div className={`p-4 rounded-xl text-center ${
+          <div className={`p-4 rounded-xl transition-800 text-center ${
             isDark ? "bg-gray-800" : "bg-white shadow-sm"
           }`}>
             <div className="text-2xl font-bold text-yellow-500">29</div>
             <div>Total Wins</div>
           </div>
-          <div className={`p-4 rounded-xl text-center ${
+          <div className={`p-4 rounded-xl transition-800 text-center ${
             isDark ? "bg-gray-800" : "bg-white shadow-sm"
           }`}>
-            <div className="text-2xl font-bold text-purple-500">16</div>
+            <div className="text-2xl font-bold text-purple-500 transition-800">16</div>
             <div>Top Scorer</div>
           </div>
         </motion.div>
@@ -321,14 +319,14 @@ const PointTable = ({ theme = "light" }) => {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className={`overflow-hidden rounded-2xl border backdrop-blur-md ${
+          className={`overflow-hidden rounded-2xl border transition-800 backdrop-blur-md ${
             isDark
               ? "bg-gray-800/70 border-gray-700"
               : "bg-white/90 border-gray-200 shadow-xl"
           }`}
         >
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full transition-800 text-left border-collapse">
               <thead>
                 <tr className={`${isDark ? "bg-gray-700" : "bg-gray-100"}`}>
                   {[
@@ -343,7 +341,7 @@ const PointTable = ({ theme = "light" }) => {
                   ].map((header) => (
                     <th
                       key={header.key}
-                      className={`p-4 font-semibold cursor-pointer ${
+                      className={`p-4 font-semibold transition-800 cursor-pointer ${
                         sortConfig.key === header.key
                           ? isDark
                             ? "text-purple-400"
@@ -352,7 +350,7 @@ const PointTable = ({ theme = "light" }) => {
                       }`}
                       onClick={() => handleSort(header.key)}
                     >
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center transition-800 gap-1">
                         {header.label}
                         {getSortIcon(header.key)}
                       </div>
@@ -368,7 +366,7 @@ const PointTable = ({ theme = "light" }) => {
                         variants={rowVariants}
                         whileHover="hover"
                         onClick={() => toggleTeamExpand(team.rank)}
-                        className={`transition-colors cursor-pointer ${
+                        className={`transition-colors transition-800 cursor-pointer ${
                           index % 2 === 0
                             ? isDark
                               ? "bg-gray-800/50"
@@ -380,7 +378,7 @@ const PointTable = ({ theme = "light" }) => {
                             : "hover:bg-gray-100"
                         }`}
                       >
-                        <td className="p-4 font-bold flex items-center gap-2">
+                        <td className="p-4 font-bold transition-800 flex items-center gap-2">
                           {team.rank <= 3 && (
                             <FaMedal
                               className={

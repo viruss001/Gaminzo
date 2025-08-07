@@ -95,13 +95,13 @@ export default function CounterStats({ theme = "light" }) {
   );
 
   return (
-    <section className={`relative w-full py-16 md:py-24 overflow-hidden ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <section className={`relative w-full py-16 md:py-24 overflow-hidden transition-800`}>
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden opacity-20">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute rounded-full ${isDark ? 'bg-blue-900' : 'bg-blue-100'}`}
+            className={`absolute rounded-full  ${isDark ? 'bg-blue-900' : 'bg-blue-100'}`}
             style={{
               width: Math.random() * 300 + 100,
               height: Math.random() * 300 + 100,
@@ -136,7 +136,7 @@ export default function CounterStats({ theme = "light" }) {
           transition={{ duration: 0.5 }}
         >
           {/* Hover Glow */}
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
+          <div className="absolute inset-0 rounded-3xl transition-800 bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
 
           {/* Inner Content */}
           <div

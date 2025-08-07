@@ -6,7 +6,7 @@ const AppDownload = ({ theme = "light" }) => {
   const isDark = theme === "dark";
 
   return (
-    <section className={`relative w-full mb-7 py-20 md:py-28 px-4 sm:px-6 lg:px-8 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <section className={`relative w-full mb-7 py-20 md:py-28 px-4 sm:px-6 lg:px-8 `}>
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden opacity-10">
         {[...Array(8)].map((_, i) => (

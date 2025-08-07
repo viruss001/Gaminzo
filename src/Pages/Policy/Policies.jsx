@@ -277,7 +277,7 @@ const PoliciesPage = ({ theme = "light" }) => {
   const lastRowItems = policiesData.slice(fullRows);
 
   return (
-    <section className={`relative w-full py-16 sm:py-20 mt-[-5rem] px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`} id="top">
+    <section className={`relative w-full py-16 sm:py-20 mt-[-5rem] px-4 `} id="top">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className={`text-3xl sm:text-4xl md:text-5xl mt-5 font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${isDark ? "from-emerald-400 to-blue-400" : "from-blue-600 to-emerald-600"}`}>
           Our Policies
@@ -287,19 +287,19 @@ const PoliciesPage = ({ theme = "light" }) => {
         </p>
 
         {/* Full rows */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mt-12 sm:mt-16 place-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mt-12 sm:mt-16 place-items-center transition-800">
           {policiesData.slice(0, fullRows).map((policy, idx) => (
             <ParticleCard
               key={idx}
               onClick={() => handleCardClick(policy)}
-              className="relative w-full max-w-[18rem] aspect-square rounded-3xl p-[2px]"
+              className="relative w-full max-w-[18rem] aspect-square rounded-3xl p-[2px] transition-800"
               particleCount={8}
               glowColor={policy.glowColor}
               enableTilt={!isMobile}
               enableMagnetism={!isMobile}
             >
-              <div className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 py-6 ${isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"}`}>
-                <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-br ${policy.color}`}>
+              <div className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full transition-800 text-center px-4 py-6 ${isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"}`}>
+                <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full transition-800 bg-gradient-to-br ${policy.color}`}>
                   {React.cloneElement(policy.icon, { className: "text-2xl text-white" })}
                 </motion.div>
                 <h3 className="font-bold text-lg sm:text-xl tracking-wide mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">{policy.title}</h3>
@@ -316,14 +316,14 @@ const PoliciesPage = ({ theme = "light" }) => {
               <ParticleCard
                 key={idx}
                 onClick={() => handleCardClick(policy)}
-                className="relative w-full max-w-[18rem] aspect-square rounded-3xl p-[2px]"
+                className="relative w-full max-w-[18rem] aspect-square rounded-3xl p-[2px] transition-800"
                 particleCount={8}
                 glowColor={policy.glowColor}
                 enableTilt={!isMobile}
                 enableMagnetism={!isMobile}
               >
-                <div className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 py-6 ${isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"}`}>
-                  <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className={`flex items-center justify-center w-14 h-14 mb-4 rounded-full bg-gradient-to-br ${policy.color}`}>
+                <div className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 transition-800  py-6 ${isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"}`}>
+                  <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className={`flex items-center justify-center w-14 h-14 mb-4 transition-800 rounded-full bg-gradient-to-br ${policy.color}`}>
                     {React.cloneElement(policy.icon, { className: "text-2xl text-white" })}
                   </motion.div>
                   <h3 className="font-bold text-lg sm:text-xl tracking-wide mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">{policy.title}</h3>

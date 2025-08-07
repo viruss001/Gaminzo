@@ -319,7 +319,7 @@ const WhyChooseUs = ({ theme = "light" }) => {
   }, [bgControls]);
 
   return (
-    <section className={`relative w-full py-16 sm:py-24 px-4 overflow-hidden ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <section className={`relative w-full py-16 sm:py-24 px-4 overflow-hidden `}>
       <motion.div className="absolute inset-0 overflow-hidden" animate={bgControls}>
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           {[...Array(8)].map((_, i) => (

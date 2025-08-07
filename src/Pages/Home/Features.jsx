@@ -10,22 +10,22 @@ const MOBILE_BREAKPOINT = 768;
 
 const featuresData = [
   {
-    title: "All-in-One Gaming",
-    desc: "Fantasy Cricket, Quizzes & Stock Games in one app",
+    title: "One App | Many Games",
+    desc: "Fantasy, Quiz & Stocks",
     icon: <FaGamepad />, // Changed to more relevant icon
     color: "from-purple-500 to-pink-500", // Matches your theme
     glowColor: "168, 85, 247", // Purple glow
   },
   {
-    title: "Instant Cashouts",
+    title: "Instant Withdrawal",
     desc: "Get your winnings in seconds", // More concise
     icon: <FaMoneyBillWave />, // Better financial icon
     color: "from-green-500 to-emerald-400", // Success color
     glowColor: "16, 185, 129", // Green glow
   },
   {
-    title: "Reward Coins",
-    desc: "Earn & redeem coins for bonuses", // Simplified
+    title: "Earn Coins",
+    desc: "Earn & redeem coins ", // Simplified
     icon: <FaCoins />, // More appropriate icon
     color: "from-amber-500 to-yellow-400", // Coin-like color
     glowColor: "245, 158, 11", // Amber glow
@@ -200,7 +200,7 @@ const WhyChooseUs = ({ theme = "light" }) => {
   const features = useMemo(() => featuresData, []);
 
   return (
-    <section className={`relative w-full py-16 sm:py-20 mt-[-8rem] px-4 ${isDark ? "bg-gray-900" : "bg-gray-50"}`}>
+    <section className={`relative w-full py-16 sm:py-20 mt-[-8rem] px-4`}>
       <div className="max-w-7xl mx-auto text-center">
         <h2
           className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text  text-transparent bg-gradient-to-r ${
@@ -234,9 +234,9 @@ const WhyChooseUs = ({ theme = "light" }) => {
               clickEffect={!isMobile}
               enableMagnetism={!isMobile}
             >
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300" />
+              <div className="absolute inset-0 rounded-3xltransition-800 bg-gradient-to-r from-blue-500 to-emerald-400 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300" />
               <div
-                className={`relative z-10 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 sm:px-6 py-6 sm:py-8 ${
+                className={`relative z-10 transition-800 rounded-3xl flex flex-col items-center justify-center h-full text-center px-4 sm:px-6 py-6 sm:py-8 ${
                   isDark ? "bg-gray-800/80 backdrop-blur-md text-white" : "bg-white/90 backdrop-blur-sm text-gray-800"
                 }`}
               >
@@ -244,14 +244,14 @@ const WhyChooseUs = ({ theme = "light" }) => {
                   variants={iconFloatVariants}
                   animate="float"
                   whileHover="hover"
-                  className={`flex items-center justify-center w-14 sm:w-16 h-14 sm:h-16 mb-4 rounded-full bg-gradient-to-br ${feature.color} shadow-lg`}
+                  className={`flex items-center justify-center transition-800 w-14 sm:w-16 h-14 sm:h-16 mb-4 rounded-full bg-gradient-to-br ${feature.color} shadow-lg`}
                 >
-                  {React.cloneElement(feature.icon, { className: "text-xl sm:text-2xl text-white" })}
+                  {React.cloneElement(feature.icon, { className: "text-xl transition-800 sm:text-2xl text-white" })}
                 </motion.div>
-                <h3 className="font-bold text-lg sm:text-xl tracking-wide mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                <h3 className="font-bold text-lg sm:text-[1.2rem] tracking-wide mb-2   bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
                   {feature.title}
                 </h3>
-                <p className={`text-sm sm:text-base ${isDark ? "text-gray-300" : "text-gray-600"}`}>{feature.desc}</p>
+                <p className={`text-sm  sm:text-base ${isDark ? "text-gray-300" : "text-gray-600"}`}>{feature.desc}</p>
                 <motion.div
                   className={`absolute inset-0 rounded-3xl border-2 ${
                     isDark ? "border-emerald-400/30" : "border-blue-400/30"

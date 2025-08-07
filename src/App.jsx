@@ -53,7 +53,7 @@ function App() {
 
   return (
     <div
-      className={`relative min-h-screen transition-colors duration-500 ${
+      className={`relative min-h-screen duration-800  ${
         theme === "dark" ? "text-white bg-gray-900" : "text-black bg-gray-50"
       }`}
     >

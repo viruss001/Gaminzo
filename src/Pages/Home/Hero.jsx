@@ -33,9 +33,7 @@ const Hero = ({ theme = "light" }) => {
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className={`relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-16 sm:py-28 overflow-hidden ${
-        isDark ? "bg-gray-900" : "bg-gray-50"
-      }`}
+      className={`relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-16 sm:py-28 overflow-hidden `}
     >
       {/* Background Particles (CSS-based, GPU optimized) */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -123,7 +121,7 @@ const Hero = ({ theme = "light" }) => {
 
         {/* Feature Cards */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 durations-800 sm:gap-8"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
